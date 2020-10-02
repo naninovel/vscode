@@ -1,0 +1,18 @@
+import * as vscode from "vscode";
+
+import { createLogger } from "./utils/logger";
+import { launchLanguageServiceWithProgressReport } from "./language/client";
+import { activateWithTelemetryAndErrorHandling } from "./utils/telemetry";
+import { createAzExtOutputChannel } from "vscode-azureextensionui";
+
+export async function activate(context: vscode.ExtensionContext): Promise<void> {
+  const outputChannel = createAzExtOutputChannel("NaniScript", "naniscript");
+  await activateWithTelemetryAndErrorHandling(context, outputChannel, 
+    async () => {
+      createLogger(context, outputChannel);
+      await launchLanguageServiceWithProgressReport(context, outputChannel); 
+    });
+}
+
+// eslint-disable-next-line @typescript-eslint/no-empty-function
+export function deactivate(): void {}
