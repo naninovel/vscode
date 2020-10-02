@@ -53,7 +53,28 @@
                 "scopeName": "source.naniscript",
                 "path": "./syntaxes/naniscript.tmLanguage.json"
             }
-        ]
+        ],
+        "configuration": {
+            "type": "object",
+            "title": "Naninovel",
+            "properties": {
+                "naninovel.testConfigItem": {
+                    "type": "number",
+                    "default": 100,
+                    "description": "Test configuration item for Naninovel."
+                },
+                "naninovel.trace.server": {
+                    "type": "string",
+                    "enum": [
+                        "off",
+                        "messages",
+                        "verbose"
+                    ],
+                    "default": "off",
+                    "description": "Traces the communication between VSCode and the Naninovel language server."
+                }
+            }
+        }
     },
     "scripts": {
         "vscode:prepublish": "tsc -p ./",
