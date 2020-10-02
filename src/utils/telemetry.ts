@@ -20,7 +20,7 @@ export async function activateWithTelemetryAndErrorHandling(
   });
 
   await callWithTelemetryAndErrorHandling(
-    "bicep.activate",
+    "naniscript.activate",
     async (activateContext: IActionContext) => {
       activateContext.telemetry.properties.isActivationEvent = "true";
 
