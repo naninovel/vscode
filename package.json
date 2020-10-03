@@ -47,13 +47,6 @@
                 "configuration": "./language-configuration.json"
             }
         ],
-        "grammars": [
-            {
-                "language": "naniscript",
-                "scopeName": "source.naniscript",
-                "path": "./syntaxes/naniscript.tmLanguage.json"
-            }
-        ],
         "configuration": {
             "type": "object",
             "title": "Naninovel",
