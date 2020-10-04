@@ -48,7 +48,6 @@
             }
         ],
         "configuration": {
-            "type": "object",
             "title": "Naninovel",
             "properties": {
                 "naninovel.testConfigItem": {
