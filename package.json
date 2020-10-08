@@ -47,18 +47,6 @@
                 "configuration": "./language-configuration.json"
             }
         ],
-        "editor.semanticTokenColorCustomizations": {
-            "enabled": true, 
-            "rules": {
-                "*.static": {
-                    "foreground": "#ff0000",
-                    "fontStyle": "bold"
-                },
-                "type": {
-                    "foreground": "#00aa00"
-                }
-            }
-        },
         "configuration": {
             "type": "object",
             "title": "Naninovel",
