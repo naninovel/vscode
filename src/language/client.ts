@@ -10,8 +10,19 @@ import {
 } from "vscode-azureextensionui";
 import { ErrorAction, Message, CloseAction } from "vscode-languageclient/node";
 
+const languageId = "naniscript";
 const dotnetRuntimeVersion = "3.1";
 const packagedServerPath = "server/NaninovelLanguageServer.dll";
+// const tokenTypes = new Map<string, number>();
+// const legend = (function () {
+// 	const tokenTypesLegend = [
+//     'CommentLine', 'LabelLine', 'GenericTextLine', 'CommandLine',
+//     'CommandBody', 'CommandParameter', 'ParameterValue',
+//     'InlinedCommand', 'ScriptExpression', 'InvalidSymbol'
+// 	];
+// 	tokenTypesLegend.forEach((tokenType, index) => tokenTypes.set(tokenType, index));
+// 	return new vscode.SemanticTokensLegend(tokenTypesLegend);
+// })();
 
 export async function launchLanguageServiceWithProgressReport(
   context: vscode.ExtensionContext,
@@ -52,7 +63,7 @@ async function launchLanguageService(
   };
 
   const clientOptions: lsp.LanguageClientOptions = {
-    documentSelector: [{ language: "naniscript" }],
+    documentSelector: [{ language: languageId }],
     progressOnInitialization: true,
     outputChannel,
     synchronize: {
@@ -61,7 +72,7 @@ async function launchLanguageService(
   };
 
   const client = new lsp.LanguageClient(
-    "naniscript",
+    languageId,
     "NaniScript",
     serverOptions,
     clientOptions

@@ -47,7 +47,20 @@
                 "configuration": "./language-configuration.json"
             }
         ],
+        "editor.semanticTokenColorCustomizations": {
+            "enabled": true, 
+            "rules": {
+                "*.static": {
+                    "foreground": "#ff0000",
+                    "fontStyle": "bold"
+                },
+                "type": {
+                    "foreground": "#00aa00"
+                }
+            }
+        },
         "configuration": {
+            "type": "object",
             "title": "Naninovel",
             "properties": {
                 "naninovel.testConfigItem": {
@@ -66,7 +79,35 @@
                     "description": "Traces the communication between VSCode and the Naninovel language server."
                 }
             }
-        }
+        },
+        "semanticTokenTypes": [
+            { "id": "CommentLine", "description": "" },
+            { "id": "LabelLine", "description": "" },
+            { "id": "GenericTextLine", "description": "" },
+            { "id": "CommandLine", "description": "" },
+            { "id": "CommandBody", "description": "" },
+            { "id": "CommandParameter", "description": "" },
+            { "id": "ParameterValue", "description": "" },
+            { "id": "InlinedCommand", "description": "" },
+            { "id": "ScriptExpression", "description": "" },
+            { "id": "InvalidSymbol", "description": "" }
+          ],
+          "semanticTokenScopes": [
+            {
+                "scopes": {
+                    "CommentLine": ["comment"],
+                    "LabelLine": ["entity.name.namespace"],
+                    "GenericTextLine": ["string"],
+                    "CommandLine": ["storage.type.struct"],
+                    "CommandBody": ["entity.name.function"],
+                    "CommandParameter": ["variable.parameter"],
+                    "ParameterValue": ["entity.name.variable"],
+                    "InlinedCommand": ["storage.type.struct"],
+                    "ScriptExpression": ["entity.name.other.preprocessor.macro"],
+                    "InalidSymbol": ["comment"]
+                }
+            }
+        ]
     },
     "scripts": {
         "vscode:prepublish": "tsc -p ./",
