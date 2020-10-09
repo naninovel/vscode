@@ -13,16 +13,6 @@ import { ErrorAction, Message, CloseAction } from "vscode-languageclient/node";
 const languageId = "naniscript";
 const dotnetRuntimeVersion = "3.1";
 const packagedServerPath = "server/NaninovelLanguageServer.dll";
-// const tokenTypes = new Map<string, number>();
-// const legend = (function () {
-// 	const tokenTypesLegend = [
-//     'CommentLine', 'LabelLine', 'GenericTextLine', 'CommandLine',
-//     'CommandBody', 'CommandParameter', 'ParameterValue',
-//     'InlinedCommand', 'ScriptExpression', 'InvalidSymbol'
-// 	];
-// 	tokenTypesLegend.forEach((tokenType, index) => tokenTypes.set(tokenType, index));
-// 	return new vscode.SemanticTokensLegend(tokenTypesLegend);
-// })();
 
 export async function launchLanguageServiceWithProgressReport(
   context: vscode.ExtensionContext,
