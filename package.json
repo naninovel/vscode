@@ -51,11 +51,6 @@
             "type": "object",
             "title": "Naninovel",
             "properties": {
-                "naninovel.testConfigItem": {
-                    "type": "number",
-                    "default": 100,
-                    "description": "Test configuration item for Naninovel."
-                },
                 "naninovel.trace.server": {
                     "type": "string",
                     "enum": [
