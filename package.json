@@ -134,11 +134,8 @@
         ]
     },
     "scripts": {
-        "vscode:prepublish": "tsc -p ./",
         "compile": "tsc -p ./",
-        "lint": "eslint src --ext ts",
-        "lint:fix": "eslint src --ext ts --fix",
-        "package": "vsce package --out ./naninovel.vsix && vsce publish"
+        "package": "vsce package --out ./naninovel.vsix"
     },
     "devDependencies": {
         "@types/mocha": "^8.0.3",
@@ -151,8 +148,6 @@
         "eslint-config-prettier": "^6.12.0",
         "eslint-plugin-header": "^3.1.0",
         "eslint-plugin-prettier": "^3.1.4",
-        "gulp": "^4.0.2",
-        "nerdbank-gitversioning": "^3.2.31",
         "prettier": "^2.1.2",
         "typescript": "^4.0.3",
         "vsce": "^1.80.0"
