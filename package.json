@@ -6,7 +6,7 @@
     "publisher": "Elringus",
     "homepage": "https://naninovel.com",
     "icon": "icons/package-icon.png",
-    "version": "1.0.0",
+    "version": "1.0.2",
     "keywords": [
         "NaniScript",
         "Naninovel Script",
@@ -31,7 +31,6 @@
         "onLanguage:naniscript"
     ],
     "main": "./out/extension",
-    "enableProposedApi": true,
     "aiKey": "AIF-d9b70cd4-b9f9-4d70-929b-a071c400b217",
     "contributes": {
         "languages": [
@@ -135,20 +134,13 @@
     },
     "scripts": {
         "compile": "tsc -p ./",
-        "package": "vsce package --out ./naninovel.vsix"
+        "package": "npm run compile && vsce package --out ./naninovel.vsix"
     },
     "devDependencies": {
         "@types/mocha": "^8.0.3",
         "@types/node": "^14.11.2",
         "@types/triple-beam": "^1.3.2",
         "@types/vscode": "^1.14.0",
-        "@typescript-eslint/eslint-plugin": "^4.0.0",
-        "@typescript-eslint/parser": "^3.10.1",
-        "eslint": "^7.10.0",
-        "eslint-config-prettier": "^6.12.0",
-        "eslint-plugin-header": "^3.1.0",
-        "eslint-plugin-prettier": "^3.1.4",
-        "prettier": "^2.1.2",
         "typescript": "^4.0.3",
         "vsce": "^1.80.0"
     },

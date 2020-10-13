@@ -68,8 +68,6 @@ async function launchLanguageService(
     clientOptions
   );
 
-  client.registerProposedFeatures();
-
   configureTelemetry(client);
 
   context.subscriptions.push(client.start());
