@@ -6,7 +6,7 @@
     "publisher": "Elringus",
     "homepage": "https://naninovel.com",
     "icon": "icons/package-icon.png",
-    "version": "0.0.0-placeholder",
+    "version": "1.0.0",
     "keywords": [
         "NaniScript",
         "Naninovel Script",
@@ -138,7 +138,7 @@
         "compile": "tsc -p ./",
         "lint": "eslint src --ext ts",
         "lint:fix": "eslint src --ext ts --fix",
-        "package": "gulp setversion && vsce package --out ./naninovel.vsix && gulp resetversion"
+        "package": "gulp setversion && vsce package --out ./naninovel.vsix"
     },
     "devDependencies": {
         "@types/mocha": "^8.0.3",
