@@ -138,7 +138,7 @@
         "compile": "tsc -p ./",
         "lint": "eslint src --ext ts",
         "lint:fix": "eslint src --ext ts --fix",
-        "package": "gulp setversion && vsce package --out ./naninovel.vsix"
+        "package": "vsce package --out ./naninovel.vsix && vsce publish"
     },
     "devDependencies": {
         "@types/mocha": "^8.0.3",
