@@ -15,11 +15,11 @@
         "nani"
     ],
     "bugs": {
-        "url": "https://github.com/Elringus/NaninovelVSCode/issues"
+        "url": "https://github.com/Naninovel/VSCode/issues"
     },
     "repository": {
         "type": "git",
-        "url": "https://github.com/Elringus/NaninovelVSCode.git"
+        "url": "https://github.com/Naninovel/VSCode.git"
     },
     "engines": {
         "vscode": "^1.49.0"
