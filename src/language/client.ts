@@ -40,11 +40,8 @@ async function launchLanguageService(
   getLogger().debug(`Found language server at '${languageServerPath}'.`);
 
   const serverExecutable: lsp.Executable = {
-    command: path.basename(dotnetCommandPath),
-    args: [languageServerPath],
-    options: {
-      cwd: path.dirname(dotnetCommandPath),
-    },
+    command: dotnetCommandPath,
+    args: [languageServerPath]
   };
 
   const serverOptions: lsp.ServerOptions = {
