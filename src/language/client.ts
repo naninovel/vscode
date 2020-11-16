@@ -12,6 +12,7 @@ import { ErrorAction, Message, CloseAction } from "vscode-languageclient/node";
 
 const languageId = "naniscript";
 const dotnetRuntimeVersion = "3.1";
+const extensionId = "Elringus.naninovel";
 const packagedServerPath = "server/NaninovelLanguageServer.dll";
 
 export async function launchLanguageServiceWithProgressReport(
@@ -79,7 +80,10 @@ async function launchLanguageService(
 async function ensureDotnetRuntimeInstalled(): Promise<string> {
   const result = await vscode.commands.executeCommand<{ dotnetPath: string }>(
     "dotnet.acquire",
-    { version: dotnetRuntimeVersion }
+    { 
+      version: dotnetRuntimeVersion,
+      requestingExtensionId: extensionId
+    }
   );
 
   if (!result) {
