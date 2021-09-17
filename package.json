@@ -46,6 +46,17 @@
                 "configuration": "./language-configuration.json"
             }
         ],
+        "configuration": {
+            "title": "naninovel",
+            "properties": {
+                "naninovel.bridgingPort": {
+                    "scope": "resource",
+                    "type": "number",
+                    "default": 41016,
+                    "description": "The bridging server port number to connect for communication with a Unity or Web Naninovel project. Change both here and in the project settings in case the default port is occupied by another app."
+                }
+            }
+        },
         "semanticTokenTypes": [
             {
                 "id": "CommentLine",
