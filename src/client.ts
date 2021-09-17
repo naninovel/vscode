@@ -2,7 +2,7 @@ import * as vscode from "vscode";
 import * as lsp from "vscode-languageclient/node";
 import * as path from "path";
 import { existsSync } from "fs";
-import { getLogger } from "../utils/logger";
+import { getLogger } from "./logger";
 import {
   callWithTelemetryAndErrorHandlingSync,
   IActionContext,
@@ -80,7 +80,7 @@ async function launchLanguageService(
 async function ensureDotnetRuntimeInstalled(): Promise<string> {
   const result = await vscode.commands.executeCommand<{ dotnetPath: string }>(
     "dotnet.acquire",
-    { 
+    {
       version: dotnetRuntimeVersion,
       requestingExtensionId: extensionId
     }
