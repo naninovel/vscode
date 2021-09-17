@@ -71,24 +71,14 @@ class outputChannelTransport extends Transport {
   }
 }
 
-export function createLogger(
-  context: vscode.ExtensionContext,
-  outputChannel: vscode.OutputChannel
-): void {
+export function createLogger(context: vscode.ExtensionContext,
+  outputChannel: vscode.OutputChannel): void {
   const winstonLogger = new WinstonLogger(outputChannel, "debug");
-
   logger = winstonLogger;
-  logger.info("Current log level: debug.");
-
   context.subscriptions.push(winstonLogger);
 }
 
 export function getLogger(): Logger {
-  if (!logger) {
-    throw new Error(
-      "Logger is undefined. Make sure to call createLogger() first."
-    );
-  }
-
+  if (!logger) throw new Error("Logger is undefined. Make sure to call createLogger() first.");
   return logger;
 }
