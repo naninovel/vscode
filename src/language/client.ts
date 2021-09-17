@@ -13,7 +13,7 @@ import { ErrorAction, Message, CloseAction } from "vscode-languageclient/node";
 const languageId = "naniscript";
 const dotnetRuntimeVersion = "3.1";
 const extensionId = "Elringus.naninovel";
-const packagedServerPath = "server/NaninovelLanguageServer.dll";
+const packagedServerPath = "server/LanguageServer.dll";
 
 export async function launchLanguageServiceWithProgressReport(
   context: vscode.ExtensionContext,
@@ -94,9 +94,7 @@ async function ensureDotnetRuntimeInstalled(): Promise<string> {
 }
 
 function ensureLanguageServerExists(context: vscode.ExtensionContext): string {
-  const languageServerPath =
-    process.env.NANINOVEL_LANGUAGE_SERVER_PATH ?? // Local server for debugging.
-    context.asAbsolutePath(packagedServerPath); // Packaged server.
+  const languageServerPath = context.asAbsolutePath(packagedServerPath);
 
   if (!existsSync(languageServerPath)) {
     throw new Error(
