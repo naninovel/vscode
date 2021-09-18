@@ -47,7 +47,7 @@
             }
         ],
         "configuration": {
-            "title": "naninovel",
+            "title": "Naninovel",
             "properties": {
                 "naninovel.bridgingPort": {
                     "scope": "resource",
