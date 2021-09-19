@@ -49,11 +49,19 @@
         "configuration": {
             "title": "Naninovel",
             "properties": {
+                "naninovel.bridgingEnabled": {
+                    "scope": "resource",
+                    "type": "boolean",
+                    "default": true,
+                    "description": "Whether to enable bridging service for communication with a Unity or Web Naninovel project. Used to sync project metadata, show currently played script lines, route goto requests, etc."
+                },
                 "naninovel.bridgingPort": {
                     "scope": "resource",
                     "type": "number",
+                    "minimum": 1025,
+                    "maximum": 65535,
                     "default": 41016,
-                    "description": "The bridging server port number to connect for communication with a Unity or Web Naninovel project. Change both here and in the project settings in case the default port is occupied by another app."
+                    "markdownDescription": "The bridging server port number to connect to. Change both here and in the project settings in case the default port is occupied by another app. Only applies when `#naninovel.bridgingEnabled#` is enabled."
                 }
             }
         },
