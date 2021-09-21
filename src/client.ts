@@ -57,6 +57,10 @@ async function launchLanguageService(context: vscode.ExtensionContext,
   context.subscriptions.push(client.start());
   getLogger().info("Naninovel language service started.");
   await client.onReady();
+
+  client.onNotification("naninovel/updatePlaybackStatus", updatePlaybackStatus);
+  context.subscriptions.push(vscode.commands.registerCommand("naninovel.goto", () => goto(client)));
+
   getLogger().info("Naninovel language service ready.");
 }
 
@@ -72,4 +76,31 @@ function ensureLanguageServerExists(context: vscode.ExtensionContext): string {
   if (!existsSync(languageServerPath))
     throw new Error(`Language server does not exist at '${languageServerPath}'.`);
   return path.resolve(languageServerPath);
+}
+
+async function updatePlaybackStatus(scriptName: string, lineIndex: number) {
+  if (lineIndex < 0 || scriptName == undefined) return;
+  const documentUri = buildScriptUri(scriptName);
+  const document = await vscode.workspace.openTextDocument(documentUri);
+  const options: vscode.TextDocumentShowOptions = {
+    preserveFocus: false,
+    preview: true,
+    selection: new vscode.Range(lineIndex, 0, lineIndex, Number.MAX_SAFE_INTEGER)
+  };
+  await vscode.window.showTextDocument(document, options);
+}
+
+function buildScriptUri(scriptName: string): vscode.Uri {
+  if (vscode.workspace.workspaceFolders == undefined)
+    return vscode.Uri.file(`${scriptName}.nani`)
+  const rootPath = vscode.workspace.workspaceFolders[0].uri.path;
+  return vscode.Uri.file(`${rootPath}/${scriptName}.nani`);
+}
+
+function goto(client: lsp.LanguageClient) {
+  const document = vscode.window.activeTextEditor?.document;
+  const line = vscode.window.activeTextEditor?.selection.active.line;
+  if (line == undefined || document == undefined) return;
+  const scriptName = path.parse(document?.fileName).name;
+  client.sendNotification("naninovel/goto", [scriptName, line]);
 }
