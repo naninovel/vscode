@@ -22,7 +22,7 @@
         "url": "https://github.com/Naninovel/VSCode.git"
     },
     "engines": {
-        "vscode": "^1.52.0"
+        "vscode": "^1.60.0"
     },
     "categories": [
         "Programming Languages"
