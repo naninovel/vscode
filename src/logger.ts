@@ -1,9 +1,10 @@
-import * as vscode from "vscode";
+import vscode from "vscode";
 import * as winston from "winston";
-import * as Transport from "winston-transport";
+import { format } from "logform";
+import Transport from "winston-transport";
 import { MESSAGE } from "triple-beam";
 
-export interface Logger {
+export interface Logger extends vscode.Disposable {
   debug(message: string): void;
   info(message: string): void;
   warn(message: string): void;
@@ -15,23 +16,23 @@ export type LogLevel = keyof Logger;
 
 let logger: Logger | undefined;
 
-export class WinstonLogger implements Logger, vscode.Disposable {
+export class WinstonLogger implements Logger {
   private readonly logger: winston.Logger;
   private disposed = false;
 
   constructor(outputChannel: vscode.OutputChannel, logLevel: LogLevel) {
     this.logger = winston.createLogger({
       level: logLevel,
-      format: winston.format.combine(
-        winston.format.timestamp(),
-        winston.format.errors({ stack: true }),
-        winston.format.printf((entry) =>
+      format: format.combine(
+        format.timestamp(),
+        format.errors({ stack: true }),
+        format.printf((entry) =>
           entry.stack
             ? `${entry.timestamp} ${entry.level}: ${entry.message} - ${entry.stack}`
             : `${entry.timestamp} ${entry.level}: ${entry.message}`
         )
       ),
-      transports: [new outputChannelTransport(outputChannel)],
+      transports: [new OutputChannelTransport(outputChannel)],
     });
   }
 
@@ -60,7 +61,7 @@ export class WinstonLogger implements Logger, vscode.Disposable {
   }
 }
 
-class outputChannelTransport extends Transport {
+class OutputChannelTransport extends Transport {
   constructor(private readonly outputChannel: vscode.OutputChannel) {
     super();
   }
@@ -71,14 +72,21 @@ class outputChannelTransport extends Transport {
   }
 }
 
-export function createLogger(context: vscode.ExtensionContext,
-  outputChannel: vscode.OutputChannel): void {
+export function createLogger(
+  context: vscode.ExtensionContext,
+  outputChannel: vscode.OutputChannel): Logger {
   const winstonLogger = new WinstonLogger(outputChannel, "debug");
   logger = winstonLogger;
+  logger.info("Current log level: debug.");
   context.subscriptions.push(winstonLogger);
+  return logger;
 }
 
 export function getLogger(): Logger {
   if (!logger) throw new Error("Logger is undefined. Make sure to call createLogger() first.");
   return logger;
+}
+
+export function resetLogger(): void {
+  logger = undefined;
 }
