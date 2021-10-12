@@ -186,11 +186,11 @@
     },
     "scripts": {
         "compile": "tsc -p ./",
-        "clean": "rimraf ./server/Metadata.xml ./server/System.Reactive.xml",
+        "clean": "rimraf ./server/Metadata.xml ./server/System.Reactive.xml ./server/LanguageServer.exe",
         "esbuild-base": "esbuild ./src/main.ts --bundle --outfile=out/main.js --external:vscode --format=cjs --platform=node",
         "esbuild": "npm run esbuild-base -- --sourcemap",
         "esbuild-watch": "npm run esbuild-base -- --sourcemap --watch",
-        "vscode:prepublish": "npm run clean && npm run compile && npm run esbuild-base --",
+        "vscode:prepublish": "npm run clean && npm run compile && npm run esbuild-base -- --minify",
         "package": "vsce package --out ./naninovel.vsix"
     },
     "devDependencies": {
