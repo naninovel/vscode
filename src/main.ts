@@ -1,11 +1,11 @@
-import * as vscode from "vscode";
-import { createLogger } from "./logger";
-import { launchLanguageServiceWithProgressReport } from "./client";
+// noinspection JSUnusedGlobalSymbols
 
-export async function activate(context: vscode.ExtensionContext): Promise<void> {
-    const outputChannel = vscode.window.createOutputChannel("NaniScript");
-    createLogger(context, outputChannel);
-    await launchLanguageServiceWithProgressReport(context, outputChannel);
+import * as vsc from "vscode";
+import { launchClientWithProgressReport } from "./client";
+
+export async function activate(context: vsc.ExtensionContext) {
+    const channel = vsc.window.createOutputChannel("NaniScript");
+    await launchClientWithProgressReport(context, channel);
 }
 
-export function deactivate(): void { }
+export function deactivate() { }

@@ -1,6 +1,6 @@
 {
   "name": "naninovel",
-  "version": "1.5.0",
+  "version": "1.6.0",
   "displayName": "Naninovel",
   "description": "IDE features for NaniScript — scenario scripting language for Naninovel visual novel engine.",
   "author": "Elringus",
@@ -17,7 +17,6 @@
     "onLanguage:naniscript",
     "onCommand:naninovel.goto"
   ],
-  "aiKey": "AIF-d9b70cd4-b9f9-4d70-929b-a071c400b217",
   "contributes": {
     "languages": [
       {
@@ -108,13 +107,12 @@
   },
   "scripts": {
     "build": "webpack --mode production",
-    "clean": "rimraf ./server/System.Reactive.xml ./server/LanguageServer.exe",
+    "clean": "rimraf ./server/Metadata.xml",
     "vscode:prepublish": "npm run clean && npm run build",
     "package": "vsce package --out ./naninovel.vsix"
   },
   "devDependencies": {
     "@types/node": "^16.10.3",
-    "@types/triple-beam": "^1.3.2",
     "@types/vscode": "^1.60.0",
     "rimraf": "^3.0.2",
     "typescript": "^4.5.2",
@@ -124,11 +122,7 @@
     "vsce": "^2.3.0"
   },
   "dependencies": {
-    "triple-beam": "^1.3.0",
-    "vscode-languageclient": "^7.0.0",
-    "winston": "^3.3.3",
-    "winston-transport": "^4.4.0",
-    "logform": "^2.3.0"
+    "vscode-languageclient": "^7.0.0"
   },
   "extensionDependencies": [
     "ms-dotnettools.vscode-dotnet-runtime"

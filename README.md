@@ -1,6 +1,6 @@
 # Naninovel VS Code
 
-Grammar and IDE support for NaniScript — scenario scripting langauge for [Naninovel](https://naninovel.com) visual novel engine.
+Grammar and IDE support for NaniScript — scenario scripting language for [Naninovel](https://naninovel.com) visual novel engine.
 
 Find installation and usage instructions at: https://naninovel.com/guide/ide-extension
 
