@@ -5,7 +5,7 @@ import { existsSync } from "fs";
 import { getLogger } from "./logger";
 
 const languageId = "naniscript";
-const dotnetRuntimeVersion = "3.1";
+const dotnetRuntimeVersion = "6.0";
 const extensionId = "Elringus.naninovel";
 const packagedServerPath = "server/LanguageServer.dll";
 
