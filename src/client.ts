@@ -8,6 +8,7 @@ const languageId = "naniscript";
 const dotnetRuntimeVersion = "6.0";
 const extensionId = "Elringus.naninovel";
 const packagedServerPath = "server/LanguageServer.dll";
+const defaultMetadata = require("./metadata.xml");
 
 export async function launchLanguageServiceWithProgressReport(
     context: vscode.ExtensionContext,
@@ -57,6 +58,8 @@ async function launchLanguageService(context: vscode.ExtensionContext,
     context.subscriptions.push(client.start());
     getLogger().info("Naninovel language service started.");
     await client.onReady();
+
+    client.sendNotification("naninovel/initializeMetadata", [defaultMetadata]);
 
     client.onNotification("naninovel/updatePlaybackStatus", updatePlaybackStatus);
     context.subscriptions.push(vscode.commands.registerCommand("naninovel.goto", () => goto(client)));
