@@ -108,6 +108,8 @@
   },
   "scripts": {
     "build": "webpack --mode production",
+    "clean": "rimraf ./server/System.Reactive.xml ./server/LanguageServer.exe",
+    "vscode:prepublish": "npm run clean && npm run build",
     "package": "vsce package --out ./naninovel.vsix"
   },
   "devDependencies": {
