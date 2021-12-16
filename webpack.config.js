@@ -1,12 +1,16 @@
-module.exports = () => ({
-    target: "node",
-    entry: "./src/main.ts",
-    resolve: { extensions: [".ts", ".js"] },
-    module: { rules: [{ test: /\.ts/, loader: "ts-loader" }] },
-    externals: { vscode: "commonjs vscode" },
+module.exports = {
+    target: "webworker",
+    entry: "./src/extension.ts",
+    resolve: {
+        extensions: [".ts", ".js"],
+        mainFields: ["browser", "module", "main"]
+    },
     output: {
-        filename: "main.js",
+        filename: "extension.js",
         library: { type: "commonjs" },
         clean: true
-    }
-});
+    },
+    module: { rules: [{ test: /\.ts/, loader: "ts-loader" }] },
+    externals: { vscode: "commonjs vscode" },
+    performance: { hints: false }
+};

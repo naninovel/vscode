@@ -2,14 +2,7 @@
   "compilerOptions": {
     "target": "es6",
     "module": "commonjs",
-    "moduleResolution": "node",
-    "outDir": "dist",
-    "lib": ["es2016"],
-    "sourceMap": true,
-    "skipLibCheck": true,
-    "strict": true,
-    "noImplicitReturns": true,
-    "esModuleInterop": true
+    "strict": true
   },
-  "include": ["src"]
+  "include": ["src/**/*.ts"]
 }

@@ -1,11 +1,10 @@
 // noinspection JSUnusedGlobalSymbols
 
 import * as vsc from "vscode";
-import { launchClientWithProgressReport } from "./client";
+import * as editor from "../../WebEditor/dist/naninovel-editor";
 
 export async function activate(context: vsc.ExtensionContext) {
     const channel = vsc.window.createOutputChannel("NaniScript");
-    await launchClientWithProgressReport(context, channel);
 }
 
 export function deactivate() { }
