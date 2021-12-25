@@ -1,9 +1,10 @@
 ﻿import { window, workspace, commands, TextDocumentShowOptions, ExtensionContext, Range, Uri } from "vscode";
-import { onPlaybackStatusUpdated, requestGoto } from "naninovel-editor";
+import { connectToBridgingServer, onPlaybackStatusUpdated, requestGoto } from "naninovel-editor";
 
-export function bootBridging(context: ExtensionContext, worker: Worker) {
-    onPlaybackStatusUpdated(worker, updatePlaybackStatus);
-    context.subscriptions.push(commands.registerCommand("naninovel.goto", () => goto(worker)));
+export async function bootBridging(context: ExtensionContext) {
+    await connectToBridgingServer(41016);
+    onPlaybackStatusUpdated(updatePlaybackStatus);
+    context.subscriptions.push(commands.registerCommand("naninovel.goto", goto));
 }
 
 async function updatePlaybackStatus(status: any) {
@@ -26,12 +27,12 @@ function buildScriptUri(scriptName: string): Uri {
     return Uri.file(`${rootPath}/${scriptName}.nani`);
 }
 
-function goto(worker: Worker) {
+function goto() {
     const document = window.activeTextEditor?.document;
     const line = window.activeTextEditor?.selection.active.line;
     if (line == null || document == null) return;
     const scriptName = getFileNameWithoutExtension(document.fileName);
-    requestGoto(worker, scriptName, line);
+    requestGoto(scriptName, line);
 }
 
 function getFileNameWithoutExtension(path: string) {

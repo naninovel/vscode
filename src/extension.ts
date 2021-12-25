@@ -1,6 +1,7 @@
 // noinspection JSUnusedGlobalSymbols
 
-import { window, ProgressLocation, Uri, ExtensionContext, OutputChannel } from "vscode";
+import { window, ProgressLocation, Uri, ExtensionContext } from "vscode";
+import { bootEditor } from "naninovel-editor";
 import { bootLanguage } from "./language";
 import { bootBridging } from "./bridging";
 
@@ -8,20 +9,13 @@ export async function activate(context: ExtensionContext) {
     await window.withProgress({
         title: `Launching Naninovel services...`,
         location: ProgressLocation.Notification
-    }, async (_, __) => bootServices(context));
+    }, () => bootServices(context));
 }
 
 async function bootServices(context: ExtensionContext) {
     const channel = window.createOutputChannel("Naninovel");
-    const worker = bootWorker(context, channel);
+    const workerUri = Uri.joinPath(context.extensionUri, "dist/worker.js");
+    const worker = await bootEditor(workerUri.toString(), channel.appendLine);
     await bootLanguage(context, channel, worker);
-    bootBridging(context, worker);
-}
-
-function bootWorker(context: ExtensionContext, channel: OutputChannel): Worker {
-    const uri = Uri.joinPath(context.extensionUri, "dist/worker.js");
-    const worker = new Worker(uri.toString());
-    worker.onerror = e => channel.appendLine(`Worker error: ${e.message}`);
-    worker.onmessageerror = e => channel.appendLine(`Worker message error: ${e}`);
-    return worker;
+    await bootBridging(context);
 }
