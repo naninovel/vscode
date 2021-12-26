@@ -1,5 +1,3 @@
-const CopyPlugin = require("copy-webpack-plugin");
-
 module.exports = {
     target: "webworker",
     entry: "./src/extension.ts",
@@ -13,9 +11,6 @@ module.exports = {
         library: { type: "commonjs" },
         clean: true
     },
-    plugins: [
-        new CopyPlugin({ patterns: [{ from: "../Editor/dist/worker/naninovel-editor-worker.js", to: "worker.js" }] })
-    ],
     module: { rules: [{ test: /\.ts/, loader: "ts-loader" }] },
     externals: { vscode: "commonjs vscode" },
     performance: { hints: false }
