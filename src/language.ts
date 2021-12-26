@@ -7,7 +7,7 @@ const serverReader = new Emitter<Message>();
 const serverWriter = new Emitter<Message>();
 
 export async function bootLanguage(context: ExtensionContext, channel: OutputChannel) {
-    await bootLanguageServer(serverReader, serverWriter);
+    bootLanguageServer(serverReader, serverWriter);
     const client = new LanguageClient(createClientOptions(channel));
     context.subscriptions.push(client.start());
     await client.onReady();

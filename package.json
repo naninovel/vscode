@@ -41,7 +41,7 @@
           "minimum": 1025,
           "maximum": 65535,
           "default": 41016,
-          "markdownDescription": "The bridging server port number to connect to. Change both here and in the project settings in case the default port is occupied by another app. Only applies when `#naninovel.bridgingEnabled#` is enabled."
+          "markdownDescription": "Preferred bridging server port number to connect to. The extension will scan multiple ports starting from the preferred one when attempting to find the server. Only applies when `#naninovel.bridgingEnabled#` is enabled."
         },
         "naninovel.updateMetadata": {
           "scope": "resource",

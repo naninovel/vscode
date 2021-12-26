@@ -1,10 +1,11 @@
 ﻿import { window, workspace, commands, TextDocumentShowOptions, ExtensionContext, Range, Uri } from "vscode";
 import { Bindings } from "naninovel-editor";
+import { bridgingPort, highlightPlayedLines, updateMetadata } from "./configuration";
 
 export async function bootBridging(context: ExtensionContext) {
-    Bindings.OnMetadataUpdated = _ => {};
-    Bindings.OnPlaybackStatusUpdated = updatePlaybackStatus;
-    await Bindings.ConnectToBridgingServerAsync(41016);
+    Bindings.OnMetadataUpdated = updateMetadata ? _ => {} : _ => {};
+    Bindings.OnPlaybackStatusUpdated = highlightPlayedLines ? updatePlaybackStatus : _ => {};
+    await Bindings.ConnectToBridgingServerAsync(bridgingPort);
     context.subscriptions.push(commands.registerCommand("naninovel.goto", goto));
 }
 

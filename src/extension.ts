@@ -4,6 +4,7 @@ import { window, ProgressLocation, ExtensionContext } from "vscode";
 import { bootDotNet } from "naninovel-editor";
 import { bootLanguage } from "./language";
 import { bootBridging } from "./bridging";
+import { bridgingEnabled } from "./configuration";
 
 export async function activate(context: ExtensionContext) {
     await window.withProgress({
@@ -16,5 +17,5 @@ async function bootServices(context: ExtensionContext) {
     const channel = window.createOutputChannel("Naninovel");
     await bootDotNet();
     await bootLanguage(context, channel);
-    await bootBridging(context);
+    if (bridgingEnabled) await bootBridging(context);
 }
