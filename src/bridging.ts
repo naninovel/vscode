@@ -2,6 +2,7 @@
 import { Bindings } from "naninovel-editor";
 
 export async function bootBridging(context: ExtensionContext) {
+    Bindings.OnMetadataUpdated = _ => {};
     Bindings.OnPlaybackStatusUpdated = updatePlaybackStatus;
     await Bindings.ConnectToBridgingServerAsync(41016);
     context.subscriptions.push(commands.registerCommand("naninovel.goto", goto));
