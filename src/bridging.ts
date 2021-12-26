@@ -21,7 +21,7 @@ async function updatePlaybackStatus(status: any) {
     await window.showTextDocument(document, options);
 }
 
-function buildScriptUri(scriptName: string): Uri {
+function buildScriptUri(scriptName: string) {
     if (workspace.workspaceFolders == null)
         return Uri.file(`${scriptName}.nani`);
     const rootPath = workspace.workspaceFolders[0].uri.path;
