@@ -1,11 +1,11 @@
 ﻿import { window, workspace, commands, TextDocumentShowOptions, ExtensionContext, Range, Uri } from "vscode";
-import { Bindings } from "naninovel-editor";
+import { Bridging, Language } from "naninovel-editor";
 import { bridgingPort, highlightPlayedLines, updateMetadata } from "./configuration";
 
 export async function bootBridging(context: ExtensionContext) {
-    Bindings.OnMetadataUpdated = updateMetadata ? _ => {} : _ => {};
-    Bindings.OnPlaybackStatusUpdated = highlightPlayedLines ? updatePlaybackStatus : _ => {};
-    await Bindings.ConnectToBridgingServerAsync(bridgingPort);
+    Bridging.OnMetadataUpdated = updateMetadata ? Language.BootLanguage : _ => {};
+    Bridging.OnPlaybackStatusUpdated = highlightPlayedLines ? updatePlaybackStatus : _ => {};
+    await Bridging.ConnectToServerAsync(bridgingPort);
     context.subscriptions.push(commands.registerCommand("naninovel.goto", goto));
 }
 
@@ -34,7 +34,7 @@ function goto() {
     const line = window.activeTextEditor?.selection.active.line;
     if (line == null || document == null) return;
     const scriptName = getFileNameWithoutExtension(document.fileName);
-    Bindings.RequestGoto(scriptName, line);
+    Bridging.RequestGoto(scriptName, line);
 }
 
 function getFileNameWithoutExtension(path: string) {
