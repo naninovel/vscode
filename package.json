@@ -107,7 +107,7 @@
   },
   "scripts": {
     "build": "webpack --mode production",
-    "package": "vsce package"
+    "package": "npm run build && vsce package"
   },
   "devDependencies": {
     "naninovel-editor": "file:../Editor",
