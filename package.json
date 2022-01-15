@@ -1,125 +1,126 @@
 {
-  "name": "naninovel",
-  "version": "1.7.0",
-  "displayName": "Naninovel",
-  "description": "IDE features for NaniScript — scenario scripting language for Naninovel visual novel engine.",
-  "author": "Elringus",
-  "publisher": "Elringus",
-  "homepage": "https://naninovel.com",
-  "icon": "icons/package-icon.png",
-  "keywords": ["NaniScript", "Naninovel Script", "Scenario", "Novel", "nani"],
-  "bugs": { "url": "https://naninovel.com/support" },
-  "repository": { "type": "git", "url": "https://github.com/Naninovel/VSCode.git" },
-  "browser": "./dist/extension.js",
-  "engines": { "vscode": "^1.63.0" },
-  "categories": ["Programming Languages"],
-  "activationEvents": [
-    "onLanguage:naniscript",
-    "onCommand:naninovel.goto"
-  ],
-  "contributes": {
-    "languages": [
-      {
-        "id": "naniscript",
-        "aliases": ["NaniScript", "naniscript"],
-        "extensions": [".nani"],
-        "configuration": "./language-configuration.json"
-      }
+    "name": "naninovel",
+    "version": "1.7.0",
+    "displayName": "Naninovel",
+    "description": "IDE features for NaniScript — scenario scripting language for Naninovel visual novel engine.",
+    "author": "Elringus",
+    "publisher": "Elringus",
+    "homepage": "https://naninovel.com",
+    "icon": "icons/package-icon.png",
+    "keywords": ["NaniScript", "Naninovel Script", "Scenario", "Novel", "nani"],
+    "bugs": { "url": "https://naninovel.com/support" },
+    "repository": { "type": "git", "url": "https://github.com/Naninovel/VSCode.git" },
+    "browser": "./dist/extension.js",
+    "engines": { "vscode": "^1.63.0" },
+    "categories": ["Programming Languages"],
+    "activationEvents": [
+        "onLanguage:naniscript",
+        "onCommand:naninovel.goto"
     ],
-    "configuration": {
-      "title": "Naninovel",
-      "properties": {
-        "naninovel.bridgingEnabled": {
-          "scope": "resource",
-          "type": "boolean",
-          "default": true,
-          "description": "Whether to enable bridging service for communication with a Unity or Web Naninovel project. Used to sync project metadata, show currently played script lines, route goto requests, etc."
+    "contributes": {
+        "languages": [
+            {
+                "id": "naniscript",
+                "aliases": ["NaniScript", "naniscript"],
+                "extensions": [".nani"],
+                "configuration": "./language-configuration.json"
+            }
+        ],
+        "configuration": {
+            "title": "Naninovel",
+            "properties": {
+                "naninovel.bridgingEnabled": {
+                    "scope": "resource",
+                    "type": "boolean",
+                    "default": true,
+                    "description": "Whether to enable bridging service for communication with a Unity or Web Naninovel project. Used to sync project metadata, show currently played script lines, route goto requests, etc."
+                },
+                "naninovel.bridgingPort": {
+                    "scope": "resource",
+                    "type": "number",
+                    "minimum": 1025,
+                    "maximum": 65535,
+                    "default": 41016,
+                    "markdownDescription": "Preferred bridging server port number to connect to. The extension will scan multiple ports starting from the preferred one when attempting to find the server. Only applies when `#naninovel.bridgingEnabled#` is enabled."
+                },
+                "naninovel.updateMetadata": {
+                    "scope": "resource",
+                    "type": "boolean",
+                    "default": true,
+                    "markdownDescription": "Whether to sync project metadata when connecting to the bridging server and when the metadata is regenerated in the project."
+                },
+                "naninovel.highlightPlayedLines": {
+                    "scope": "resource",
+                    "type": "boolean",
+                    "default": true,
+                    "markdownDescription": "Whether to open currently played script file and highlight the played line."
+                }
+            }
         },
-        "naninovel.bridgingPort": {
-          "scope": "resource",
-          "type": "number",
-          "minimum": 1025,
-          "maximum": 65535,
-          "default": 41016,
-          "markdownDescription": "Preferred bridging server port number to connect to. The extension will scan multiple ports starting from the preferred one when attempting to find the server. Only applies when `#naninovel.bridgingEnabled#` is enabled."
+        "commands": [
+            {
+                "command": "naninovel.goto",
+                "title": "Goto (Naninovel)",
+                "category": "Naninovel",
+                "icon": { "light": "icons/icon.svg", "dark": "icons/icon.svg" }
+            }
+        ],
+        "menus": {
+            "editor/context": [
+                {
+                    "when": "resourceLangId == naniscript",
+                    "command": "naninovel.goto",
+                    "group": "navigation"
+                }
+            ]
         },
-        "naninovel.updateMetadata": {
-          "scope": "resource",
-          "type": "boolean",
-          "default": true,
-          "markdownDescription": "Whether to sync project metadata when connecting to the bridging server and when the metadata is regenerated in the project."
-        },
-        "naninovel.highlightPlayedLines": {
-          "scope": "resource",
-          "type": "boolean",
-          "default": true,
-          "markdownDescription": "Whether to open currently played script file and highlight the played line."
-        }
-      }
+        "semanticTokenTypes": [
+            { "id": "CommentLine", "description": "Comment string." },
+            { "id": "LabelLine", "description": "Script navigation anchor." },
+            { "id": "GenericTextLine", "description": "Message text with optional inlined commands." },
+            { "id": "CommandLine", "description": "A script command to execute on playback." },
+            { "id": "CommandBody", "description": "Contents of the command." },
+            { "id": "CommandParameter", "description": "Parameter of the command" },
+            { "id": "ParameterValue", "description": "Value of the command parameter." },
+            { "id": "InlinedCommand", "description": "A command inlined to generic text line." },
+            { "id": "ScriptExpression", "description": "A dynamic expression to evaluate at runtime." },
+            { "id": "GenericTextPrefix", "description": "A prefix with author ID and appearance placed before generic text line." },
+            { "id": "InvalidSymbol", "description": "Parse error." }
+        ],
+        "semanticTokenScopes": [
+            {
+                "scopes": {
+                    "CommentLine": ["comment"],
+                    "LabelLine": ["entity.name.namespace"],
+                    "GenericTextLine": ["entity.other"],
+                    "CommandLine": ["entity.other.attribute-name"],
+                    "CommandBody": ["entity.other.attribute-name"],
+                    "CommandParameter": ["string"],
+                    "ParameterValue": ["entity.name.function"],
+                    "InlinedCommand": ["entity.other.attribute-name"],
+                    "ScriptExpression": ["keyword.control"],
+                    "GenericTextPrefix": ["entity.name.function"],
+                    "InvalidSymbol": ["invalid"]
+                }
+            }
+        ]
     },
-    "commands": [
-      {
-        "command": "naninovel.goto",
-        "title": "Goto (Naninovel)",
-        "category": "Naninovel",
-        "icon": { "light": "icons/icon.svg", "dark": "icons/icon.svg" }
-      }
-    ],
-    "menus": {
-      "editor/context": [
-        {
-          "when": "resourceLangId == naniscript",
-          "command": "naninovel.goto",
-          "group": "navigation"
-        }
-      ]
+    "scripts": {
+        "build": "webpack --mode production",
+        "package": "vsce package",
+        "deploy": "cd ../Editor && npm run build && cd ../VSCode && npm run build && vsce package"
     },
-    "semanticTokenTypes": [
-      { "id": "CommentLine", "description": "Comment string." },
-      { "id": "LabelLine", "description": "Script navigation anchor." },
-      { "id": "GenericTextLine", "description": "Message text with optional inlined commands." },
-      { "id": "CommandLine", "description": "A script command to execute on playback." },
-      { "id": "CommandBody", "description": "Contents of the command." },
-      { "id": "CommandParameter", "description": "Parameter of the command" },
-      { "id": "ParameterValue", "description": "Value of the command parameter." },
-      { "id": "InlinedCommand", "description": "A command inlined to generic text line." },
-      { "id": "ScriptExpression", "description": "A dynamic expression to evaluate at runtime." },
-      { "id": "GenericTextPrefix", "description": "A prefix with author ID and appearance placed before generic text line." },
-      { "id": "InvalidSymbol", "description": "Parse error." }
-    ],
-    "semanticTokenScopes": [
-      {
-        "scopes": {
-          "CommentLine": ["comment"],
-          "LabelLine": ["entity.name.namespace"],
-          "GenericTextLine": ["entity.other"],
-          "CommandLine": ["entity.other.attribute-name"],
-          "CommandBody": ["entity.other.attribute-name"],
-          "CommandParameter": ["string"],
-          "ParameterValue": ["entity.name.function"],
-          "InlinedCommand": ["entity.other.attribute-name"],
-          "ScriptExpression": ["keyword.control"],
-          "GenericTextPrefix": ["entity.name.function"],
-          "InvalidSymbol": ["invalid"]
-        }
-      }
-    ]
-  },
-  "scripts": {
-    "build": "webpack --mode production",
-    "package": "npm run build && vsce package"
-  },
-  "devDependencies": {
-    "naninovel-editor": "file:../Editor",
-    "@types/vscode": "^1.63.1",
-    "typescript": "^4.5.4",
-    "webpack": "^5.65.0",
-    "webpack-cli": "^4.9.1",
-    "path-browserify": "^1.0.1",
-    "ts-loader": "^9.2.6",
-    "vsce": "^2.6.3"
-  },
-  "dependencies": {
-    "vscode-languageclient": "^7.0.0"
-  }
+    "devDependencies": {
+        "naninovel-editor": "file:../Editor",
+        "@types/vscode": "^1.63.1",
+        "typescript": "^4.5.4",
+        "webpack": "^5.65.0",
+        "webpack-cli": "^4.9.1",
+        "path-browserify": "^1.0.1",
+        "ts-loader": "^9.2.6",
+        "vsce": "^2.6.3"
+    },
+    "dependencies": {
+        "vscode-languageclient": "^7.0.0"
+    }
 }
