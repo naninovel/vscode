@@ -37,7 +37,7 @@ class LanguageClient extends CommonLanguageClient {
         super(languageId, "NaniScript", options);
     }
 
-    protected createMessageTransports(_encoding: string): Promise<MessageTransports> {
+    protected createMessageTransports(encoding: string): Promise<MessageTransports> {
         const clientReader = new LanguageMessageReader(serverWriter);
         const clientWriter = new LanguageMessageWriter(serverReader);
         return Promise.resolve({ reader: clientReader, writer: clientWriter });

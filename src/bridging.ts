@@ -1,8 +1,7 @@
 ﻿import { window, workspace, commands, TextDocumentShowOptions, ExtensionContext, Range, Uri } from "vscode";
+import { applyCustomMetadata, Bridging, PlaybackStatus, ProjectMetadata } from "editor";
 import { bridgingPort, highlightPlayedLines, updateMetadata, cacheMetadata } from "./configuration";
 import { setCachedMetadata } from "./storage";
-import { applyCustomMetadata, PlaybackStatus } from "editor";
-import { Bridging, ProjectMetadata } from "editor";
 
 export function bootBridging(context: ExtensionContext) {
     Bridging.OnMetadataUpdated = updateMetadata ? cacheAndApplyMetadata : _ => {};
