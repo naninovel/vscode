@@ -1,5 +1,5 @@
 ﻿import { ExtensionContext } from "vscode";
-import { ProjectMetadata } from "../../Editor/bindings/Bindings/bin/dotnet";
+import { ProjectMetadata } from "editor";
 
 const metadataKey = "metadata";
 let thisContext: ExtensionContext;

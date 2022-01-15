@@ -1,5 +1,5 @@
 ﻿import { OutputChannel } from "vscode";
-import { injectLogger } from "naninovel-editor";
+import { injectLogger } from "editor";
 
 let thisChannel: OutputChannel;
 

@@ -1,8 +1,8 @@
 ﻿import { window, workspace, commands, TextDocumentShowOptions, ExtensionContext, Range, Uri } from "vscode";
-import { Bridging, applyCustomMetadata } from "naninovel-editor";
 import { bridgingPort, highlightPlayedLines, updateMetadata, cacheMetadata } from "./configuration";
 import { setCachedMetadata } from "./storage";
-import { ProjectMetadata } from "../../Editor/bindings/Bindings/bin/dotnet";
+import { applyCustomMetadata } from "editor";
+import { Bridging, ProjectMetadata } from "editor";
 
 export function bootBridging(context: ExtensionContext) {
     Bridging.OnMetadataUpdated = updateMetadata ? cacheAndApplyMetadata : _ => {};

@@ -1,7 +1,7 @@
 // noinspection JSUnusedGlobalSymbols
 
 import { window, ProgressLocation, ExtensionContext } from "vscode";
-import { bootDotNet } from "naninovel-editor";
+import { boot as bootDotNet } from "editor";
 import { bootLogger } from "./logger";
 import { bootStorage } from "./storage";
 import { bootLanguage } from "./language";
