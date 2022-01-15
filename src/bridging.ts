@@ -1,7 +1,7 @@
 ﻿import { window, workspace, commands, TextDocumentShowOptions, ExtensionContext, Range, Uri } from "vscode";
 import { bridgingPort, highlightPlayedLines, updateMetadata, cacheMetadata } from "./configuration";
 import { setCachedMetadata } from "./storage";
-import { applyCustomMetadata } from "editor";
+import { applyCustomMetadata, PlaybackStatus } from "editor";
 import { Bridging, ProjectMetadata } from "editor";
 
 export function bootBridging(context: ExtensionContext) {
@@ -11,7 +11,12 @@ export function bootBridging(context: ExtensionContext) {
     context.subscriptions.push(commands.registerCommand("naninovel.goto", goto));
 }
 
-async function updatePlaybackStatus(status: any) {
+function cacheAndApplyMetadata(metadata: ProjectMetadata) {
+    if (cacheMetadata) setCachedMetadata(metadata);
+    applyCustomMetadata(metadata);
+}
+
+async function updatePlaybackStatus(status: PlaybackStatus) {
     if (!status.playing) return;
     const lineIndex = status.playedSpot.lineIndex;
     const documentUri = buildScriptUri(status.playedSpot.scriptName);
@@ -24,9 +29,12 @@ async function updatePlaybackStatus(status: any) {
     await window.showTextDocument(document, options);
 }
 
-function cacheAndApplyMetadata(metadata: ProjectMetadata) {
-    if (cacheMetadata) setCachedMetadata(metadata);
-    applyCustomMetadata(metadata);
+function goto() {
+    const document = window.activeTextEditor?.document;
+    const line = window.activeTextEditor?.selection.active.line;
+    if (line == null || document == null) return;
+    const scriptName = getFileNameWithoutExtension(document.fileName);
+    Bridging.RequestGoto(scriptName, line);
 }
 
 function buildScriptUri(scriptName: string) {
@@ -34,14 +42,6 @@ function buildScriptUri(scriptName: string) {
         return Uri.file(`${scriptName}.nani`);
     const rootPath = workspace.workspaceFolders[0].uri.path;
     return Uri.file(`${rootPath}/${scriptName}.nani`);
-}
-
-function goto() {
-    const document = window.activeTextEditor?.document;
-    const line = window.activeTextEditor?.selection.active.line;
-    if (line == null || document == null) return;
-    const scriptName = getFileNameWithoutExtension(document.fileName);
-    Bridging.RequestGoto(scriptName, line);
 }
 
 function getFileNameWithoutExtension(path: string) {
