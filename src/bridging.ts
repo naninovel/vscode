@@ -2,10 +2,10 @@
 import { Bridging, applyCustomMetadata } from "naninovel-editor";
 import { bridgingPort, highlightPlayedLines, updateMetadata } from "./configuration";
 
-export async function bootBridging(context: ExtensionContext) {
+export function bootBridging(context: ExtensionContext) {
     Bridging.OnMetadataUpdated = updateMetadata ? applyCustomMetadata : _ => {};
     Bridging.OnPlaybackStatusUpdated = highlightPlayedLines ? updatePlaybackStatus : _ => {};
-    await Bridging.ConnectToServerAsync(bridgingPort);
+    Bridging.ConnectToServerInLoop(bridgingPort);
     context.subscriptions.push(commands.registerCommand("naninovel.goto", goto));
 }
 
