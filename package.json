@@ -47,7 +47,13 @@
                     "scope": "resource",
                     "type": "boolean",
                     "default": true,
-                    "markdownDescription": "Whether to sync project metadata when connecting to the bridging server and when the metadata is regenerated in the project."
+                    "markdownDescription": "Whether to sync custom project metadata when connecting to the bridging server and when the metadata is regenerated in the project."
+                },
+                "naninovel.cacheMetadata": {
+                    "scope": "resource",
+                    "type": "boolean",
+                    "default": true,
+                    "markdownDescription": "Whether to cache custom metadata and share it across VS Code instances (including web)."
                 },
                 "naninovel.highlightPlayedLines": {
                     "scope": "resource",

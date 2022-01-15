@@ -1,9 +1,11 @@
 ﻿import { window, workspace, commands, TextDocumentShowOptions, ExtensionContext, Range, Uri } from "vscode";
 import { Bridging, applyCustomMetadata } from "naninovel-editor";
-import { bridgingPort, highlightPlayedLines, updateMetadata } from "./configuration";
+import { bridgingPort, highlightPlayedLines, updateMetadata, cacheMetadata } from "./configuration";
+import { setCachedMetadata } from "./storage";
+import { ProjectMetadata } from "../../Editor/bindings/Bindings/bin/dotnet";
 
 export function bootBridging(context: ExtensionContext) {
-    Bridging.OnMetadataUpdated = updateMetadata ? applyCustomMetadata : _ => {};
+    Bridging.OnMetadataUpdated = updateMetadata ? cacheAndApplyMetadata : _ => {};
     Bridging.OnPlaybackStatusUpdated = highlightPlayedLines ? updatePlaybackStatus : _ => {};
     Bridging.ConnectToServerInLoop(bridgingPort);
     context.subscriptions.push(commands.registerCommand("naninovel.goto", goto));
@@ -20,6 +22,11 @@ async function updatePlaybackStatus(status: any) {
         selection: new Range(lineIndex, 0, lineIndex, Number.MAX_SAFE_INTEGER)
     };
     await window.showTextDocument(document, options);
+}
+
+function cacheAndApplyMetadata(metadata: ProjectMetadata) {
+    if (cacheMetadata) setCachedMetadata(metadata);
+    applyCustomMetadata(metadata);
 }
 
 function buildScriptUri(scriptName: string) {
