@@ -127,6 +127,7 @@
     "scripts": {
         "build": "webpack --mode production",
         "package": "vsce package",
+        "debug": "cd ../Editor && webpack --mode development && cd ../VSCode && webpack --mode development && vsce package",
         "deploy": "cd ../Editor && npm run build && cd ../VSCode && npm run build && vsce package"
     },
     "devDependencies": {

@@ -22,14 +22,13 @@ function applyCachedMetadata() {
         applyCustomMetadata(cachedMetadata);
 }
 
-function createClientOptions(channel: OutputChannel): LanguageClientOptions {
+function createClientOptions(channel: OutputChannel) {
     return {
         documentSelector: [{ language: languageId }],
-        initializationOptions: {},
         progressOnInitialization: true,
         outputChannel: channel,
         synchronize: { fileEvents: workspace.createFileSystemWatcher("**/*.nani") }
-    };
+    } as LanguageClientOptions;
 }
 
 class LanguageClient extends CommonLanguageClient {
