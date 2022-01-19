@@ -91,7 +91,7 @@
             { "id": "Command", "description": "Contents of the command." },
             { "id": "CommandIdentifier", "description": "Identifier or alias of the command." },
             { "id": "Parameter", "description": "Parameter of the command" },
-            { "id": "CommandIdentifier", "description": "Identifier or alias of the parameter." },
+            { "id": "ParameterIdentifier", "description": "Identifier or alias of the parameter." },
             { "id": "ParameterValue", "description": "Value of the command parameter." },
             { "id": "InlinedCommand", "description": "A command inlined to generic text line." },
             { "id": "Expression", "description": "A dynamic expression to evaluate at runtime." },
