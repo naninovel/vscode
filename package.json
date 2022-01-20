@@ -26,6 +26,13 @@
                 "configuration": "./language-configuration.json"
             }
         ],
+        "configurationDefaults": {
+            "[naniscript]": {
+                "editor.wordWrap": "on",
+                "editor.wordBasedSuggestions": false,
+                "editor.semanticHighlighting.enabled": true
+            }
+        },
         "configuration": {
             "title": "Naninovel",
             "properties": {
