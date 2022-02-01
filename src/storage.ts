@@ -1,5 +1,5 @@
 ﻿import { ExtensionContext } from "vscode";
-import { ProjectMetadata } from "editor";
+import { Project } from "editor";
 
 const metadataKey = "metadata";
 let thisContext: ExtensionContext;
@@ -8,10 +8,10 @@ export function bootStorage(context: ExtensionContext) {
     thisContext = context;
 }
 
-export function getCachedMetadata(): ProjectMetadata | undefined {
-    return thisContext.globalState.get<ProjectMetadata>(metadataKey);
+export function getCachedMetadata(): Project | undefined {
+    return thisContext.globalState.get<Project>(metadataKey);
 }
 
-export function setCachedMetadata(metadata: ProjectMetadata) {
+export function setCachedMetadata(metadata: Project) {
     thisContext.globalState.update(metadataKey, metadata);
 }
