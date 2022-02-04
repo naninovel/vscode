@@ -1,35 +1,49 @@
-﻿import * as vsc from "vscode";
-import * as lsp from "vscode-languageclient/node";
-import { parse } from "path";
+﻿import { window, workspace, commands, TextDocumentShowOptions, ExtensionContext, Range, Uri } from "vscode";
+import { applyCustomMetadata, Bridging, PlaybackStatus, Project } from "editor";
+import { bridgingPort, highlightPlayedLines, updateMetadata, cacheMetadata } from "./configuration";
+import { setCachedMetadata } from "./storage";
 
-export function registerBridgingEvents(client: lsp.LanguageClient, context: vsc.ExtensionContext) {
-    client.onNotification("naninovel/updatePlaybackStatus", updatePlaybackStatus);
-    context.subscriptions.push(vsc.commands.registerCommand("naninovel.goto", () => goto(client)));
+export function bootBridging(context: ExtensionContext) {
+    Bridging.OnMetadataUpdated = updateMetadata ? cacheAndApplyMetadata : _ => {};
+    Bridging.OnPlaybackStatusUpdated = highlightPlayedLines ? updatePlaybackStatus : _ => {};
+    Bridging.ConnectToServerInLoop(bridgingPort);
+    context.subscriptions.push(commands.registerCommand("naninovel.goto", goto));
 }
 
-async function updatePlaybackStatus(scriptName: string, lineIndex: number) {
-    if (lineIndex < 0 || scriptName == undefined) return;
-    const documentUri = buildScriptUri(scriptName);
-    const document = await vsc.workspace.openTextDocument(documentUri);
-    const options: vsc.TextDocumentShowOptions = {
+function cacheAndApplyMetadata(metadata: Project) {
+    if (cacheMetadata) setCachedMetadata(metadata);
+    applyCustomMetadata(metadata);
+}
+
+async function updatePlaybackStatus(status: PlaybackStatus) {
+    if (!status.playing) return;
+    const lineIndex = status.playedSpot.lineIndex;
+    const documentUri = buildScriptUri(status.playedSpot.scriptName);
+    const document = await workspace.openTextDocument(documentUri);
+    const options: TextDocumentShowOptions = {
         preserveFocus: false,
         preview: true,
-        selection: new vsc.Range(lineIndex, 0, lineIndex, Number.MAX_SAFE_INTEGER)
+        selection: new Range(lineIndex, 0, lineIndex, Number.MAX_SAFE_INTEGER)
     };
-    await vsc.window.showTextDocument(document, options);
+    await window.showTextDocument(document, options);
 }
 
-function buildScriptUri(scriptName: string): vsc.Uri {
-    if (vsc.workspace.workspaceFolders == undefined)
-        return vsc.Uri.file(`${scriptName}.nani`);
-    const rootPath = vsc.workspace.workspaceFolders[0].uri.path;
-    return vsc.Uri.file(`${rootPath}/${scriptName}.nani`);
+function goto() {
+    const document = window.activeTextEditor?.document;
+    const line = window.activeTextEditor?.selection.active.line;
+    if (line == null || document == null) return;
+    const scriptName = getFileNameWithoutExtension(document.fileName);
+    Bridging.RequestGoto(scriptName, line);
 }
 
-function goto(client: lsp.LanguageClient) {
-    const document = vsc.window.activeTextEditor?.document;
-    const line = vsc.window.activeTextEditor?.selection.active.line;
-    if (line == undefined || document == undefined) return;
-    const scriptName = parse(document?.fileName).name;
-    client.sendNotification("naninovel/goto", [scriptName, line]);
+function buildScriptUri(scriptName: string) {
+    if (workspace.workspaceFolders == null)
+        return Uri.file(`${scriptName}.nani`);
+    const rootPath = workspace.workspaceFolders[0].uri.path;
+    return Uri.file(`${rootPath}/${scriptName}.nani`);
+}
+
+function getFileNameWithoutExtension(path: string) {
+    const name = path.split("/").pop()?.split("\\").pop() ?? path;
+    return name.substring(0, name.lastIndexOf("."));
 }
