@@ -1,5 +1,5 @@
 ﻿import { window, workspace, commands, TextDocumentShowOptions, ExtensionContext, Range, Uri } from "vscode";
-import { applyCustomMetadata, Bridging, PlaybackStatus, Project } from "editor";
+import { applyCustomMetadata, Bridging, Metadata } from "editor";
 import { bridgingPort, highlightPlayedLines, updateMetadata, cacheMetadata } from "./configuration";
 import { setCachedMetadata } from "./storage";
 
@@ -10,12 +10,12 @@ export function bootBridging(context: ExtensionContext) {
     context.subscriptions.push(commands.registerCommand("naninovel.goto", goto));
 }
 
-function cacheAndApplyMetadata(metadata: Project) {
+function cacheAndApplyMetadata(metadata: Metadata.Project) {
     if (cacheMetadata) setCachedMetadata(metadata);
     applyCustomMetadata(metadata);
 }
 
-async function updatePlaybackStatus(status: PlaybackStatus) {
+async function updatePlaybackStatus(status: Bridging.PlaybackStatus) {
     if (!status.playing) return;
     const lineIndex = status.playedSpot.lineIndex;
     const documentUri = buildScriptUri(status.playedSpot.scriptName);
