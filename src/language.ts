@@ -1,6 +1,6 @@
 ﻿import { workspace, OutputChannel, ExtensionContext } from "vscode";
 import { LanguageClientOptions, MessageTransports, Message, CommonLanguageClient, Emitter } from "vscode-languageclient/browser";
-import { LanguageMessageReader, LanguageMessageWriter, bootLanguageServer, applyCustomMetadata } from "editor";
+import { LanguageMessageReader, LanguageMessageWriter, bootLanguageServer, applyCustomMetadata } from "@naninovel/common";
 import { cacheMetadata } from "./configuration";
 import { getCachedMetadata } from "./storage";
 

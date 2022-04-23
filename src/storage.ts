@@ -1,5 +1,5 @@
 ﻿import { ExtensionContext } from "vscode";
-import { Metadata } from "editor";
+import { Metadata } from "bindings";
 
 const metadataKey = "metadata";
 let thisContext: ExtensionContext;

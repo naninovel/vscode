@@ -2,6 +2,7 @@
 .idea/**
 typings/**
 out/test/**
+bindings/**
 test/**
 src/**
 **/*.map
