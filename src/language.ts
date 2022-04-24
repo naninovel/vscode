@@ -1,5 +1,5 @@
 ﻿import { workspace, OutputChannel, ExtensionContext } from "vscode";
-import { LanguageClientOptions, MessageTransports, Message, CommonLanguageClient, Emitter } from "vscode-languageclient/browser";
+import { LanguageClientOptions, Message, CommonLanguageClient, Emitter } from "vscode-languageclient/browser";
 import { LanguageMessageReader, LanguageMessageWriter, bootLanguageServer, applyCustomMetadata } from "@naninovel/common";
 import { cacheMetadata } from "./configuration";
 import { getCachedMetadata } from "./storage";
@@ -36,7 +36,7 @@ class LanguageClient extends CommonLanguageClient {
         super(languageId, "NaniScript", options);
     }
 
-    protected createMessageTransports(encoding: string): Promise<MessageTransports> {
+    protected createMessageTransports(encoding: string) {
         const clientReader = new LanguageMessageReader(serverWriter);
         const clientWriter = new LanguageMessageWriter(serverReader);
         return Promise.resolve({ reader: clientReader, writer: clientWriter });
