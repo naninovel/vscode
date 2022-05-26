@@ -1,6 +1,6 @@
 {
     "private": true,
-    "name": "bindings",
+    "name": "backend",
     "main": "bin/dotnet.js",
     "types": "bin/dotnet.d.ts"
 }

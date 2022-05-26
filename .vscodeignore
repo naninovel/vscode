@@ -2,7 +2,7 @@
 .idea/**
 typings/**
 out/test/**
-bindings/**
+backend/**
 test/**
 src/**
 **/*.map

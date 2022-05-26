@@ -1,6 +1,6 @@
 ﻿import { window, workspace, commands, TextDocumentShowOptions, ExtensionContext, Range, Uri } from "vscode";
-import { Bridging, Metadata } from "bindings";
-import { applyCustomMetadata } from "@naninovel/common";
+import { Bridging, Metadata } from "backend";
+import { applyCustomMetadata } from "@naninovel/language";
 import { bridgingPort, highlightPlayedLines, updateMetadata, cacheMetadata } from "./configuration";
 import { setCachedMetadata } from "./storage";
 

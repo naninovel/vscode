@@ -1,5 +1,5 @@
 import { window, ProgressLocation, ExtensionContext } from "vscode";
-import { boot as bootDotNet } from "bindings";
+import { boot as bootDotNet } from "backend";
 import { bootLogger } from "./logger";
 import { bootStorage } from "./storage";
 import { bootLanguage } from "./language";
