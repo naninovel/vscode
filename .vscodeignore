@@ -3,6 +3,7 @@
 typings/**
 out/test/**
 backend/**
+scripts/**
 test/**
 src/**
 **/*.map
