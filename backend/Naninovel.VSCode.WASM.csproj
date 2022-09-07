@@ -1,0 +1,19 @@
+<Project Sdk="Microsoft.NET.Sdk.BlazorWebAssembly">
+
+    <PropertyGroup>
+        <TargetFramework>net6.0</TargetFramework>
+        <Nullable>enable</Nullable>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <PackageReference Include="DotNetJS" Version="0.14.0"/>
+        <PackageReference Include="Naninovel.Common.Bindings" Version="2022.8.2.2240"/>
+        <PackageReference Include="Naninovel.Language.Bindings" Version="2022.8.2.2321"/>
+    </ItemGroup>
+
+    <ItemGroup>
+        <Content Remove="package.json"/>
+        <Content Remove="nuget.config"/>
+    </ItemGroup>
+
+</Project>

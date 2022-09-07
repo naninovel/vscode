@@ -1,6 +1,6 @@
 ﻿import { workspace, OutputChannel, ExtensionContext } from "vscode";
-import { LanguageClientOptions, MessageTransports, Message, CommonLanguageClient, Emitter } from "vscode-languageclient/browser";
-import { LanguageMessageReader, LanguageMessageWriter, bootLanguageServer, applyCustomMetadata } from "editor";
+import { LanguageClientOptions, Message, Emitter, BaseLanguageClient } from "vscode-languageclient/browser";
+import { LanguageMessageReader, LanguageMessageWriter, bootLanguageServer, applyCustomMetadata } from "@naninovel/language";
 import { cacheMetadata } from "./configuration";
 import { getCachedMetadata } from "./storage";
 
@@ -12,8 +12,7 @@ export async function bootLanguage(context: ExtensionContext, channel: OutputCha
     bootLanguageServer(serverReader, serverWriter);
     if (cacheMetadata) applyCachedMetadata();
     const client = new LanguageClient(createClientOptions(channel));
-    context.subscriptions.push(client.start());
-    await client.onReady();
+    await client.start();
 }
 
 function applyCachedMetadata() {
@@ -31,12 +30,12 @@ function createClientOptions(channel: OutputChannel) {
     } as LanguageClientOptions;
 }
 
-class LanguageClient extends CommonLanguageClient {
+class LanguageClient extends BaseLanguageClient {
     constructor(options: LanguageClientOptions) {
         super(languageId, "NaniScript", options);
     }
 
-    protected createMessageTransports(encoding: string): Promise<MessageTransports> {
+    protected createMessageTransports(encoding: string) {
         const clientReader = new LanguageMessageReader(serverWriter);
         const clientWriter = new LanguageMessageWriter(serverReader);
         return Promise.resolve({ reader: clientReader, writer: clientWriter });
