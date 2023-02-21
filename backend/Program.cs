@@ -1,4 +1,5 @@
 ﻿using DotNetJS;
+using Naninovel.Common.Bindings;
 using static Naninovel.Common.Bindings.Utilities;
 
 [assembly: JSNamespace(NamespacePattern, NamespaceReplacement)]
@@ -14,6 +15,6 @@ public static class Program
         // https://github.com/Elringus/DotNetJS/issues/23
         _ = typeof(Naninovel.Language.Bindings.Language.Language).Assembly;
         var languageAssembly = typeof(Language.Document).Assembly;
-        Log($"Naninovel language version: {languageAssembly.GetName().Version}");
+        JSLogger.LogInfo($"Naninovel language version: {languageAssembly.GetName().Version}");
     }
 }
