@@ -5,9 +5,9 @@ import { bridgingPort, highlightPlayedLines, updateMetadata, cacheMetadata } fro
 import { setCachedMetadata } from "./storage";
 
 export function bootBridging(context: ExtensionContext) {
-    Bridging.OnMetadataUpdated = updateMetadata ? cacheAndApplyMetadata : _ => {};
-    Bridging.OnPlaybackStatusUpdated = highlightPlayedLines ? updatePlaybackStatus : _ => {};
-    Bridging.ConnectToServerInLoop(bridgingPort);
+    Bridging.onMetadataUpdated = updateMetadata ? cacheAndApplyMetadata : _ => {};
+    Bridging.onPlaybackStatusUpdated = highlightPlayedLines ? updatePlaybackStatus : _ => {};
+    Bridging.connectToServerInLoop(bridgingPort);
     context.subscriptions.push(commands.registerCommand("naninovel.goto", goto));
 }
 
@@ -34,7 +34,7 @@ function goto() {
     const line = window.activeTextEditor?.selection.active.line;
     if (line == null || document == null) return;
     const scriptName = getFileNameWithoutExtension(document.fileName);
-    Bridging.RequestGoto(scriptName, line);
+    Bridging.requestGoto(scriptName, line);
 }
 
 function buildScriptUri(scriptName: string) {

@@ -1,4 +1,4 @@
-﻿import { ExtensionContext } from "vscode";
+﻿import { ExtensionContext, commands } from "vscode";
 import { Metadata } from "backend";
 
 const metadataKey = "metadata";
@@ -6,6 +6,7 @@ let thisContext: ExtensionContext;
 
 export function bootStorage(context: ExtensionContext) {
     thisContext = context;
+    context.subscriptions.push(commands.registerCommand("naninovel.purge", purgeCachedMetadata));
 }
 
 export function getCachedMetadata(): Metadata.Project | undefined {
@@ -14,4 +15,8 @@ export function getCachedMetadata(): Metadata.Project | undefined {
 
 export function setCachedMetadata(metadata: Metadata.Project) {
     thisContext.globalState.update(metadataKey, metadata);
+}
+
+function purgeCachedMetadata() {
+    thisContext.globalState.update(metadataKey, {});
 }
