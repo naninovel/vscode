@@ -68,6 +68,12 @@
                     "type": "boolean",
                     "default": true,
                     "markdownDescription": "Whether to open currently played script file and highlight the played line."
+                },
+                "naninovel.loadAllScripts": {
+                    "scope": "resource",
+                    "type": "boolean",
+                    "default": true,
+                    "markdownDescription": "Whether to load and compile all the naninovel scripts in project when the extension is initilalized. Required for project-wide diagnostics and cross-script navigation."
                 }
             }
         },
@@ -143,11 +149,11 @@
     "devDependencies": {
         "backend": "file:./backend",
         "@naninovel/common": "^1.0.19",
-        "@naninovel/language": "^1.0.5",
+        "@naninovel/language": "^1.0.6",
         "vscode-languageclient": "^8.1.0",
         "@types/vscode": "^1.76.0",
         "typescript": "^4.9.5",
-        "webpack": "^5.75.0",
+        "webpack": "^5.76.2",
         "webpack-cli": "^5.0.1",
         "ts-loader": "^9.4.2",
         "path-browserify": "^1.0.1",

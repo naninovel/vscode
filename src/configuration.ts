@@ -8,3 +8,4 @@ export const bridgingPort = root.get<number>("bridgingPort") ?? 41016;
 export const updateMetadata = root.get<boolean>("updateMetadata") ?? true;
 export const cacheMetadata = root.get<boolean>("cacheMetadata") ?? true;
 export const highlightPlayedLines = root.get<boolean>("highlightPlayedLines") ?? true;
+export const loadAllScripts = root.get<boolean>("loadAllScripts") ?? true;
