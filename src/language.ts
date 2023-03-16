@@ -14,7 +14,7 @@ export async function bootLanguage(context: ExtensionContext, channel: OutputCha
     if (cacheMetadata) applyCachedMetadata();
     const client = new LanguageClient(createClientOptions(channel));
     await client.start();
-    if (loadAllScripts) findAndLoadAllScripts();
+    if (loadAllScripts) await findAndLoadAllScripts();
 }
 
 function applyCachedMetadata() {
@@ -32,11 +32,9 @@ function createClientOptions(channel: OutputChannel) {
     } as LanguageClientOptions;
 }
 
-function findAndLoadAllScripts() {
-    workspace.findFiles("*.nani").then(uris => {
-        for (const uri of uris)
-            workspace.fs.readFile(uri).then(f => loadScriptDocument(uri.path, decoder.decode(f)));
-    });
+async function findAndLoadAllScripts() {
+    const uris = await workspace.findFiles("*.nani");
+    await Promise.all(uris.map(uri => workspace.fs.readFile(uri).then(f => loadScriptDocument(uri.path, decoder.decode(f)))));
 }
 
 class LanguageClient extends BaseLanguageClient {
