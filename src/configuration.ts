@@ -9,3 +9,6 @@ export const updateMetadata = root.get<boolean>("updateMetadata") ?? true;
 export const cacheMetadata = root.get<boolean>("cacheMetadata") ?? true;
 export const highlightPlayedLines = root.get<boolean>("highlightPlayedLines") ?? true;
 export const loadAllScripts = root.get<boolean>("loadAllScripts") ?? true;
+export const diagnoseSyntax = root.get<boolean>("diagnoseSyntax") ?? true;
+export const diagnoseSemantics = root.get<boolean>("diagnoseSemantics") ?? true;
+export const diagnoseNavigation = root.get<boolean>("diagnoseNavigation") ?? true;

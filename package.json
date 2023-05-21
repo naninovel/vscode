@@ -74,6 +74,24 @@
                     "type": "boolean",
                     "default": true,
                     "markdownDescription": "Whether to load and compile all the naninovel scripts in project when the extension is initilalized. Required for project-wide diagnostics and cross-script navigation."
+                },
+                "naninovel.diagnoseSyntax": {
+                    "scope": "resource",
+                    "type": "boolean",
+                    "default": true,
+                    "markdownDescription": "Whether to report errors in naniscript syntax: missing command identifiers, multiple nameless parameters, unclosed inlined commands, etc."
+                },
+                "naninovel.diagnoseSemantics": {
+                    "scope": "resource",
+                    "type": "boolean",
+                    "default": true,
+                    "markdownDescription": "Whether to report metadata-related errors: unknown command and parameters, missing required parameters, incorrect value types, etc."
+                },
+                "naninovel.diagnoseNavigation": {
+                    "scope": "resource",
+                    "type": "boolean",
+                    "default": true,
+                    "markdownDescription": "Whether to report errors related to script navigation: unknown endpoints (eg, @goto commands to unknown script or label), unused labels, etc. `#naninovel.loadAllScripts#` is required to analyze endpoints inside un-opened scripts."
                 }
             }
         },
@@ -151,7 +169,7 @@
     "devDependencies": {
         "backend": "file:./backend",
         "@naninovel/common": "^1.0.19",
-        "@naninovel/language": "^1.0.6",
+        "@naninovel/language": "^1.0.8",
         "vscode-languageclient": "^8.1.0",
         "@types/vscode": "^1.78.0",
         "typescript": "^5.0.4",

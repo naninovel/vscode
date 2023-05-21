@@ -1,10 +1,10 @@
 ﻿using DotNetJS;
-using Naninovel.Common.Bindings;
-using static Naninovel.Common.Bindings.Utilities;
+using Naninovel.Bindings;
+using static Naninovel.Bindings.Utilities;
 
 [assembly: JSNamespace(NamespacePattern, NamespaceReplacement)]
 
-namespace Naninovel.VSCode.WASM;
+namespace Naninovel.Language.VSCode;
 
 public static class Program
 {
@@ -12,9 +12,6 @@ public static class Program
 
     public static void Main ()
     {
-        // https://github.com/Elringus/DotNetJS/issues/23
-        _ = typeof(Naninovel.Language.Bindings.Language.Language).Assembly;
-        var languageAssembly = typeof(Language.Document).Assembly;
-        JSLogger.LogInfo($"Naninovel language version: {languageAssembly.GetName().Version}");
+        JSLogger.LogInfo($"Naninovel language version: {typeof(Language).Assembly.GetName().Version}");
     }
 }
