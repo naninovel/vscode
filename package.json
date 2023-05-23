@@ -169,7 +169,7 @@
     "devDependencies": {
         "backend": "file:./backend",
         "@naninovel/common": "^1.0.19",
-        "@naninovel/language": "^1.0.9",
+        "@naninovel/language": "^1.0.11",
         "vscode-languageclient": "^8.1.0",
         "@types/vscode": "^1.78.0",
         "typescript": "^5.0.4",
