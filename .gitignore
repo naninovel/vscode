@@ -8,6 +8,7 @@ build/
 
 *.suo
 *.user
+*.vsix
 
 node_modules
 dist

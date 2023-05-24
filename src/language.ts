@@ -39,7 +39,7 @@ async function findAndLoadAllScripts() {
 }
 
 async function readScript(uri: Uri) {
-    return workspace.fs.readFile(uri).then(f => ({ uri: uri.path, text: decoder.decode(f) }));
+    return workspace.fs.readFile(uri).then(f => ({ uri: uri.fsPath, text: decoder.decode(f) }));
 }
 
 class LanguageClient extends BaseLanguageClient {
