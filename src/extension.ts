@@ -19,6 +19,6 @@ async function bootServices(context: ExtensionContext) {
     bootLogger(channel);
     bootStorage(context);
     await bootDotNet();
-    await bootLanguage(context, channel);
+    await bootLanguage(channel);
     if (bridgingEnabled) bootBridging(context);
 }

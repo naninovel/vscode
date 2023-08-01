@@ -1,5 +1,5 @@
 ﻿import * as Language from "@naninovel/language";
-import { workspace, OutputChannel, ExtensionContext, Uri } from "vscode";
+import { workspace, OutputChannel, Uri } from "vscode";
 import { LanguageClientOptions, Message, Emitter, BaseLanguageClient } from "vscode-languageclient/browser";
 import { cacheMetadata, loadAllScripts, diagnoseSyntax, diagnoseSemantics, diagnoseNavigation } from "./configuration";
 import { getCachedMetadata } from "./storage";
@@ -8,7 +8,7 @@ const serverReader = new Emitter<Message>();
 const serverWriter = new Emitter<Message>();
 const decoder = new TextDecoder("utf-8");
 
-export async function bootLanguage(context: ExtensionContext, channel: OutputChannel) {
+export async function bootLanguage(channel: OutputChannel) {
     Language.bootLanguageServer(serverReader, serverWriter);
     Language.configure({ diagnoseSyntax, diagnoseSemantics, diagnoseNavigation });
     if (cacheMetadata) applyCachedMetadata();
@@ -33,7 +33,7 @@ function createClientOptions(channel: OutputChannel) {
 }
 
 async function findAndLoadAllScripts() {
-    const uris = await workspace.findFiles("*.nani");
+    const uris = await workspace.findFiles("**/*.nani");
     const scripts: { uri: string, text: string }[] = await Promise.all(uris.map(readScript));
     Language.upsertDocuments(scripts);
 }
@@ -47,7 +47,7 @@ class LanguageClient extends BaseLanguageClient {
         super(Language.languageId, "NaniScript", options);
     }
 
-    protected createMessageTransports(encoding: string) {
+    protected createMessageTransports(_: string) {
         const clientReader = new Language.LanguageMessageReader(serverWriter);
         const clientWriter = new Language.LanguageMessageWriter(serverReader);
         return Promise.resolve({ reader: clientReader, writer: clientWriter });
