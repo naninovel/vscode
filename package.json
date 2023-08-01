@@ -11,7 +11,7 @@
     "bugs": { "url": "https://naninovel.com/support" },
     "repository": { "type": "git", "url": "https://github.com/Naninovel/VSCode.git" },
     "browser": "./dist/extension.js",
-    "engines": { "vscode": "^1.79.1" },
+    "engines": { "vscode": "^1.80.0" },
     "categories": ["Programming Languages"],
     "activationEvents": [
         "onLanguage:naniscript",
@@ -163,6 +163,7 @@
         ]
     },
     "scripts": {
+        "update": "ncu --interactive",
         "build": "webpack --mode production",
         "package": "vsce package"
     },
@@ -171,12 +172,13 @@
         "@naninovel/common": "^1.0.21",
         "@naninovel/language": "^1.0.16",
         "vscode-languageclient": "^8.1.0",
-        "@types/vscode": "^1.79.1",
-        "typescript": "^5.1.3",
-        "webpack": "^5.88.0",
+        "@types/vscode": "^1.80.0",
+        "typescript": "^5.1.6",
+        "webpack": "^5.88.2",
         "webpack-cli": "^5.1.4",
-        "ts-loader": "^9.4.3",
+        "ts-loader": "^9.4.4",
         "path-browserify": "^1.0.1",
-        "@vscode/vsce": "^2.19.0"
+        "@vscode/vsce": "^2.20.0",
+        "npm-check-updates": "^16.10.17"
     }
 }
