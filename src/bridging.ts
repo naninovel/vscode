@@ -19,7 +19,7 @@ function cacheAndApplyMetadata(metadata: Metadata.Project) {
 async function updatePlaybackStatus(status: Bridging.PlaybackStatus) {
     if (!status.playing) return;
     const lineIndex = status.playedSpot.lineIndex;
-    const documentUri = buildScriptUri(status.playedSpot.scriptName);
+    const documentUri = await findScriptDocument(status.playedSpot.scriptName);
     const document = await workspace.openTextDocument(documentUri);
     const options: TextDocumentShowOptions = {
         preserveFocus: false,
@@ -37,11 +37,9 @@ function goto() {
     Bridging.requestGoto(scriptName, line);
 }
 
-function buildScriptUri(scriptName: string) {
-    if (workspace.workspaceFolders == null)
-        return Uri.file(`${scriptName}.nani`);
-    const rootPath = workspace.workspaceFolders[0].uri.path;
-    return Uri.file(`${rootPath}/${scriptName}.nani`);
+async function findScriptDocument(scriptName: string) {
+    const files = await workspace.findFiles(`**/${scriptName}.nani`, null, 1);
+    return files.at(0) ?? Uri.file(`${scriptName}.nani`);
 }
 
 function getFileNameWithoutExtension(path: string) {
