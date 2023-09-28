@@ -1,5 +1,5 @@
 import { window, ProgressLocation, ExtensionContext } from "vscode";
-import { boot as bootDotNet } from "backend";
+import backend from "backend";
 import { bootLogger } from "./logger";
 import { bootStorage } from "./storage";
 import { bootLanguage } from "./language";
@@ -18,7 +18,7 @@ async function bootServices(context: ExtensionContext) {
     const channel = window.createOutputChannel("Naninovel");
     bootLogger(channel);
     bootStorage(context);
-    await bootDotNet();
+    await backend.boot();
     await bootLanguage(channel);
     if (bridgingEnabled) bootBridging(context);
 }

@@ -1,23 +1,8 @@
-﻿using System.Text.Json.Serialization;
-using DotNetJS;
+using Bootsharp;
 using Naninovel.Bindings;
+using Naninovel.Language;
 using static Naninovel.Bindings.Utilities;
 
 [assembly: JSNamespace(NamespacePattern, NamespaceReplacement)]
 
-namespace Naninovel.Language.VSCode;
-
-public static class Program
-{
-    static Program ()
-    {
-        JS.Runtime.ConfigureJson(options =>
-            options.DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull
-        );
-    }
-
-    public static void Main ()
-    {
-        JSLogger.LogInfo($"Naninovel language version: {typeof(Language).Assembly.GetName().Version}");
-    }
-}
+JSLogger.LogInfo($"Naninovel language version: {typeof(Language).Assembly.GetName().Version}");

@@ -1,19 +1,17 @@
-<Project Sdk="Microsoft.NET.Sdk.BlazorWebAssembly">
+<Project Sdk="Microsoft.NET.Sdk">
 
     <PropertyGroup>
-        <TargetFramework>net6.0</TargetFramework>
-        <Nullable>enable</Nullable>
+        <TargetFramework>net8.0</TargetFramework>
+        <RuntimeIdentifier>browser-wasm</RuntimeIdentifier>
+        <BootsharpName>backend</BootsharpName>
+        <BootsharpPackageDirectory>$(MSBuildThisFileDirectory)</BootsharpPackageDirectory>
+        <BootsharpAggressiveTrimming>true</BootsharpAggressiveTrimming>
     </PropertyGroup>
 
     <ItemGroup>
-        <PackageReference Include="DotNetJS" Version="0.23.4"/>
-        <PackageReference Include="Naninovel.Common.Bindings" Version="2023.8.1.2130"/>
-        <PackageReference Include="Naninovel.Language.Bindings" Version="2023.8.9.1847"/>
-    </ItemGroup>
-
-    <ItemGroup>
-        <Content Remove="package.json"/>
-        <Content Remove="nuget.config"/>
+        <PackageReference Include="Bootsharp" Version="0.1.0-rc.28"/>
+        <PackageReference Include="Naninovel.Common.Bindings" Version="2023.9.28.1853"/>
+        <PackageReference Include="Naninovel.Language.Bindings" Version="2023.9.28.2049"/>
     </ItemGroup>
 
 </Project>

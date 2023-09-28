@@ -1,4 +1,4 @@
-﻿import { OutputChannel } from "vscode";
+import { OutputChannel } from "vscode";
 import { injectLogger } from "@naninovel/common";
 
 let thisChannel: OutputChannel;

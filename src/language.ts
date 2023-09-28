@@ -1,4 +1,4 @@
-﻿import * as Language from "@naninovel/language";
+import * as Language from "@naninovel/language";
 import { workspace, OutputChannel, Uri } from "vscode";
 import { LanguageClientOptions, Message, Emitter, BaseLanguageClient } from "vscode-languageclient/browser";
 import { cacheMetadata, loadAllScripts, diagnoseSyntax, diagnoseSemantics, diagnoseNavigation } from "./configuration";

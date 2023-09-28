@@ -1,4 +1,4 @@
-﻿import { workspace } from "vscode";
+import { workspace } from "vscode";
 
 const root = workspace.getConfiguration("naninovel");
 if (root == null) throw Error("Failed to access workspace configuration.");

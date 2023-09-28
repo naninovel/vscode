@@ -1,6 +1,5 @@
 {
-    "private": true,
     "name": "backend",
-    "main": "bin/dotnet.js",
-    "types": "bin/dotnet.d.ts"
+    "main": "bin/backend/backend.mjs",
+    "types": "bin/backend/types/backend.d.ts"
 }

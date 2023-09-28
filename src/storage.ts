@@ -1,4 +1,4 @@
-﻿import { ExtensionContext, commands } from "vscode";
+import { ExtensionContext, commands } from "vscode";
 import { Metadata } from "backend";
 
 const metadataKey = "metadata";
