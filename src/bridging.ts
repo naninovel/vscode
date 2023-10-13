@@ -3,6 +3,9 @@ import { Bridging, Metadata } from "backend";
 import { applyCustomMetadata } from "@naninovel/language";
 import { bridgingPort, highlightPlayedLines, updateMetadata, cacheMetadata } from "./configuration";
 import { setCachedMetadata } from "./storage";
+import { WebSocket as WebSocketClient } from "ws";
+
+WebSocket = <never>WebSocketClient;
 
 export function bootBridging(context: ExtensionContext) {
     Bridging.onMetadataUpdated = updateMetadata ? cacheAndApplyMetadata : _ => {};

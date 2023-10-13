@@ -14,9 +14,9 @@ export function getCachedMetadata(): Metadata.Project | undefined {
 }
 
 export function setCachedMetadata(metadata: Metadata.Project) {
-    thisContext.globalState.update(metadataKey, metadata);
+    void thisContext.globalState.update(metadataKey, metadata);
 }
 
 function purgeCachedMetadata() {
-    thisContext.globalState.update(metadataKey, {});
+    void thisContext.globalState.update(metadataKey, {});
 }

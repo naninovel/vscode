@@ -1,5 +1,5 @@
-import { window, ProgressLocation, ExtensionContext } from "vscode";
 import backend from "backend";
+import { window, ProgressLocation, ExtensionContext } from "vscode";
 import { bootLogger } from "./logger";
 import { bootStorage } from "./storage";
 import { bootLanguage } from "./language";
