@@ -9,9 +9,9 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <PackageReference Include="Bootsharp" Version="0.1.0-rc.158"/>
-        <PackageReference Include="Naninovel.Common.Bindings" Version="2023.10.16.1901"/>
-        <PackageReference Include="Naninovel.Language.Bindings" Version="2023.10.13.305"/>
+        <PackageReference Include="Bootsharp" Version="0.1.0-rc.159"/>
+        <PackageReference Include="Naninovel.Common.Bindings" Version="2023.10.17.1938"/>
+        <PackageReference Include="Naninovel.Language.Bindings" Version="2023.10.17.1940"/>
     </ItemGroup>
 
 </Project>
