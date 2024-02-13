@@ -7,7 +7,7 @@ import { setCachedMetadata } from "./storage";
 export function bootBridging(context: ExtensionContext) {
     Bridging.onMetadataUpdated = updateMetadata ? cacheAndApplyMetadata : _ => {};
     Bridging.onPlaybackStatusUpdated = highlightPlayedLines ? updatePlaybackStatus : _ => {};
-    Bridging.connectToServerInLoop(bridgingPort);
+    void Bridging.connectToServerInLoop(bridgingPort);
     context.subscriptions.push(commands.registerCommand("naninovel.goto", goto));
 }
 
