@@ -1,6 +1,6 @@
 {
     "name": "backend",
     "type": "module",
-    "main": "bin/backend/backend.mjs",
-    "types": "bin/backend/types/backend.d.ts"
+    "main": "bin/backend/index.mjs",
+    "types": "bin/backend/types/index.d.ts"
 }
