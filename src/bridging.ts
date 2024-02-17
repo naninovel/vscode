@@ -22,7 +22,7 @@ async function updatePlaybackStatus(status: Bridging.PlaybackStatus) {
     const documentUri = await findScriptDocument(status.playedSpot.scriptName);
     const document = await workspace.openTextDocument(documentUri);
     const options: TextDocumentShowOptions = {
-        preserveFocus: false,
+        preserveFocus: true,
         preview: true,
         selection: new Range(lineIndex, 0, lineIndex, Number.MAX_SAFE_INTEGER)
     };
