@@ -11,7 +11,7 @@
     "bugs": { "url": "https://naninovel.com/support" },
     "repository": { "type": "git", "url": "git+https://github.com/naninovel/vscode.git" },
     "browser": "./dist/extension.js",
-    "engines": { "vscode": "^1.86.1" },
+    "engines": { "vscode": "^1.88.0" },
     "categories": ["Programming Languages"],
     "activationEvents": [
         "onLanguage:naniscript",
@@ -29,9 +29,40 @@
         ],
         "configurationDefaults": {
             "[naniscript]": {
+                "files.exclude": {
+                    "**/*.meta": true
+                },
                 "editor.wordWrap": "on",
-                "editor.wordBasedSuggestions": false,
-                "editor.semanticHighlighting.enabled": true
+                "editor.wordBasedSuggestions": "off",
+                "editor.occurrencesHighlight": "off",
+                "editor.suggest.showWords": false,
+                "editor.bracketPairColorization.enabled": false,
+                "editor.semanticTokenColorCustomizations": {
+                    "enabled": true,
+                    "rules": {
+                        "CommentLine": { "foreground": "#5d6470", "italic": true },
+                        "CommentText": { "foreground": "#5d6470", "italic": true },
+                        "LabelLine": "#9bc37c",
+                        "LabelText": "#9bc37c",
+                        "CommandLine": "#6cb2ed",
+                        "InlinedCommand": "#6cb2ed",
+                        "Command": "#6cb2ed",
+                        "CommandIdentifier": "#6cb2ed",
+                        "Parameter": "#cd9769",
+                        "ParameterIdentifier": "#cd9769",
+                        "ParameterValue": "#e2be7f",
+                        "GenericTextLine": "#acb2be",
+                        "GenericTextPrefix": "#e2be7f",
+                        "GenericTextAuthor": "#e2be7f",
+                        "GenericTextAuthorAppearance": "#e2be7f",
+                        "Expression": "#62b8c1",
+                        "TextIdentifier": "#5d6470",
+                        "Error": "#d14e4e"
+                    }
+                },
+                "cSpell.enableFiletypes": [
+                    "naniscript"
+                ]
             }
         },
         "configuration": {
@@ -173,15 +204,15 @@
     },
     "dependencies": {
         "backend": "file:backend",
-        "@naninovel/common": "^1.2.7",
+        "@naninovel/common": "^1.2.9",
         "@naninovel/language": "^1.2.0",
         "vscode-languageclient": "^9.0.1"
     },
     "devDependencies": {
-        "typescript": "^5.3.3",
-        "@types/vscode": "^1.86.0",
+        "typescript": "^5.4.4",
+        "@types/vscode": "^1.88.0",
         "@vscode/vsce": "^2.24.0",
-        "esbuild": "^0.20.1",
-        "npm-check-updates": "^16.14.15"
+        "esbuild": "^0.20.2",
+        "npm-check-updates": "^16.14.18"
     }
 }
