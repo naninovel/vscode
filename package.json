@@ -204,14 +204,14 @@
     },
     "dependencies": {
         "backend": "file:backend",
-        "@naninovel/common": "^1.2.9",
+        "@naninovel/common": "^1.2.13",
         "@naninovel/language": "^1.2.0",
         "vscode-languageclient": "^9.0.1"
     },
     "devDependencies": {
-        "typescript": "^5.4.4",
+        "typescript": "^5.4.5",
         "@types/vscode": "^1.88.0",
-        "@vscode/vsce": "^2.24.0",
+        "@vscode/vsce": "^2.25.0",
         "esbuild": "^0.20.2",
         "npm-check-updates": "^16.14.18"
     }
