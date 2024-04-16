@@ -204,7 +204,7 @@
     },
     "dependencies": {
         "backend": "file:backend",
-        "@naninovel/common": "^1.2.13",
+        "@naninovel/common": "^1.2.14",
         "@naninovel/language": "^1.2.0",
         "vscode-languageclient": "^9.0.1"
     },
