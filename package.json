@@ -11,7 +11,7 @@
     "bugs": { "url": "https://naninovel.com/support" },
     "repository": { "type": "git", "url": "git+https://github.com/naninovel/vscode.git" },
     "browser": "./dist/extension.js",
-    "engines": { "vscode": "^1.88.0" },
+    "engines": { "vscode": "^1.89.0" },
     "categories": ["Programming Languages"],
     "activationEvents": [
         "onLanguage:naniscript",
@@ -51,6 +51,7 @@
                         "Parameter": "#cd9769",
                         "ParameterIdentifier": "#cd9769",
                         "ParameterValue": "#e2be7f",
+                        "LocalizableValue": "#acb2be",
                         "GenericTextLine": "#acb2be",
                         "GenericTextPrefix": "#e2be7f",
                         "GenericTextAuthor": "#e2be7f",
@@ -157,10 +158,11 @@
             { "id": "GenericTextLine", "description": "Message text with optional inlined commands." },
             { "id": "CommandLine", "description": "A script command to execute on playback." },
             { "id": "Command", "description": "Contents of the command." },
-            { "id": "CommandIdentifier", "description": "Identifier or alias of the command." },
+            { "id": "CommandIdentifier", "description": "Identifier or alias of a command." },
             { "id": "Parameter", "description": "Parameter of the command" },
-            { "id": "ParameterIdentifier", "description": "Identifier or alias of the parameter." },
-            { "id": "ParameterValue", "description": "Value of the command parameter." },
+            { "id": "ParameterIdentifier", "description": "Identifier or alias of a parameter." },
+            { "id": "ParameterValue", "description": "Value of a command parameter." },
+            { "id": "LocalizableValue", "description": "Localizable value of a command parameter, usually displayed to the player." },
             { "id": "InlinedCommand", "description": "A command inlined to generic text line." },
             { "id": "Expression", "description": "A dynamic expression to evaluate at runtime." },
             { "id": "GenericTextPrefix", "description": "A prefix with author ID and appearance placed before generic text line." },
@@ -184,6 +186,7 @@
                     "Parameter": ["string"],
                     "ParameterIdentifier": ["string"],
                     "ParameterValue": ["entity.name.function"],
+                    "LocalizableValue": ["entity.other"],
                     "InlinedCommand": ["entity.other.attribute-name"],
                     "Expression": ["keyword.control"],
                     "GenericTextPrefix": ["entity.name.function"],
@@ -204,15 +207,15 @@
     },
     "dependencies": {
         "backend": "file:backend",
-        "@naninovel/common": "^1.2.17",
+        "@naninovel/common": "^1.2.23",
         "@naninovel/language": "^1.2.0",
         "vscode-languageclient": "^9.0.1"
     },
     "devDependencies": {
         "typescript": "^5.4.5",
-        "@types/vscode": "^1.88.0",
-        "@vscode/vsce": "^2.26.0",
+        "@types/vscode": "^1.89.0",
+        "@vscode/vsce": "^2.26.1",
         "esbuild": "^0.20.2",
-        "npm-check-updates": "^16.14.18"
+        "npm-check-updates": "^16.14.20"
     }
 }
