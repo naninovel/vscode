@@ -124,6 +124,12 @@
                     "type": "boolean",
                     "default": true,
                     "markdownDescription": "Whether to report errors related to script navigation: unknown endpoints (eg, @goto commands to unknown script or label), unused labels, etc. `#naninovel.loadAllScripts#` is required to analyze endpoints inside un-opened scripts."
+                },
+                "naninovel.debounceDelay": {
+                    "scope": "resource",
+                    "type": "number",
+                    "default": 500,
+                    "markdownDescription": "Delay between processing document changes, in milliseconds. Decrease for faster response at the cost of performance."
                 }
             }
         },
@@ -207,7 +213,7 @@
     },
     "dependencies": {
         "backend": "file:backend",
-        "@naninovel/common": "^1.2.26",
+        "@naninovel/common": "^1.2.27",
         "@naninovel/language": "^1.2.0",
         "vscode-languageclient": "^9.0.1"
     },
