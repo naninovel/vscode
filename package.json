@@ -23,8 +23,15 @@
                 "id": "naniscript",
                 "aliases": ["NaniScript", "naniscript"],
                 "extensions": [".nani"],
-                "configuration": "./language-configuration.json",
+                "configuration": "./syntax/language-configuration.json",
                 "icon": { "light": "./assets/script-icon.png", "dark": "./assets/script-icon.png" }
+            }
+        ],
+        "grammars": [
+            {
+                "language": "naniscript",
+                "scopeName": "source.naniscript",
+                "path": "./syntax/naniscript.tmGrammar.json"
             }
         ],
         "configurationDefaults": {
