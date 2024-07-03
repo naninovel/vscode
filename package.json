@@ -216,7 +216,7 @@
         "backend": "dotnet publish backend",
         "build": "esbuild src/extension.ts --bundle --outfile=dist/extension.js --format=cjs --external:vscode --external:process --external:module",
         "package": "vsce package",
-        "release": "npm run build && npm run package"
+        "release": "sh scripts/release.sh"
     },
     "dependencies": {
         "backend": "file:backend",
