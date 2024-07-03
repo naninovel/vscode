@@ -3,6 +3,7 @@
     <PropertyGroup>
         <TargetFramework>net8.0</TargetFramework>
         <RuntimeIdentifier>browser-wasm</RuntimeIdentifier>
+        <RunAOTCompilation>true</RunAOTCompilation>
         <BootsharpName>backend</BootsharpName>
         <BootsharpPackageDirectory>$(MSBuildThisFileDirectory)</BootsharpPackageDirectory>
         <BootsharpAggressiveTrimming>true</BootsharpAggressiveTrimming>
