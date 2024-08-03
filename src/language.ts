@@ -1,7 +1,7 @@
 import * as Language from "@naninovel/language";
 import { workspace, OutputChannel, Uri } from "vscode";
 import { LanguageClientOptions, Message, Emitter, BaseLanguageClient } from "vscode-languageclient/browser";
-import { cacheMetadata, loadAllScripts, diagnoseSyntax, diagnoseSemantics, diagnoseNavigation, debounceDelay } from "./configuration";
+import * as cfg from "./configuration";
 import { getCachedMetadata } from "./storage";
 
 const serverReader = new Emitter<Message>();
@@ -11,11 +11,11 @@ const pattern = "**/*.nani";
 
 export async function bootLanguage(channel: OutputChannel) {
     Language.bootLanguageServer(serverReader, serverWriter);
-    Language.configure({ diagnoseSyntax, diagnoseSemantics, diagnoseNavigation, debounceDelay });
-    if (cacheMetadata) applyCachedMetadata();
+    Language.configure(cfg);
+    if (cfg.cacheMetadata) applyCachedMetadata();
     const client = new LanguageClient(createClientOptions(channel));
     await client.start();
-    if (loadAllScripts) await findAndLoadAllScripts();
+    if (cfg.loadAllScripts) await findAndLoadAllScripts();
 }
 
 function applyCachedMetadata() {

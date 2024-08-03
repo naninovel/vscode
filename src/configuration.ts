@@ -3,6 +3,7 @@ import { workspace } from "vscode";
 const root = workspace.getConfiguration("naninovel");
 if (root == null) throw Error("Failed to access workspace configuration.");
 
+export const scriptRootUri = root.get<string>("scriptRootUri") ?? "Scripts";
 export const bridgingEnabled = root.get<boolean>("bridgingEnabled") ?? true;
 export const bridgingPort = root.get<number>("bridgingPort") ?? 41016;
 export const updateMetadata = root.get<boolean>("updateMetadata") ?? true;

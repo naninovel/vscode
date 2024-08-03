@@ -11,7 +11,7 @@
     "bugs": { "url": "https://naninovel.com/support" },
     "repository": { "type": "git", "url": "git+https://github.com/naninovel/vscode.git" },
     "browser": "./dist/extension.js",
-    "engines": { "vscode": "^1.91.0" },
+    "engines": { "vscode": "^1.92.0" },
     "categories": ["Programming Languages"],
     "activationEvents": [
         "onLanguage:naniscript",
@@ -88,6 +88,12 @@
         "configuration": {
             "title": "Naninovel",
             "properties": {
+                "naninovel.scriptRootUri": {
+                    "scope": "resource",
+                    "type": "string",
+                    "default": "Scripts",
+                    "description": "Directory under which all the scenario script files are stored; used to resolve local script paths."
+                },
                 "naninovel.bridgingEnabled": {
                     "scope": "resource",
                     "type": "boolean",
@@ -232,15 +238,15 @@
     },
     "dependencies": {
         "backend": "file:backend",
-        "@naninovel/common": "^1.2.33",
-        "@naninovel/language": "^1.2.0",
+        "@naninovel/common": "^1.2.34",
+        "@naninovel/language": "^1.3.0",
         "vscode-languageclient": "^9.0.1"
     },
     "devDependencies": {
-        "typescript": "^5.5.3",
-        "@types/vscode": "^1.91.0",
+        "typescript": "^5.5.4",
+        "@types/vscode": "^1.92.0",
         "@vscode/vsce": "^2.31.1",
         "esbuild": "^0.23.0",
-        "npm-check-updates": "^16.14.20"
+        "npm-check-updates": "^17.0.1"
     }
 }
