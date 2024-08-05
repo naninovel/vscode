@@ -19,7 +19,7 @@ function cacheAndApplyMetadata(metadata: Metadata.Project) {
 async function updatePlaybackStatus(status: Bridging.PlaybackStatus) {
     if (!status.playing) return;
     const lineIndex = status.playedSpot.lineIndex;
-    const documentUri = await findScriptDocument(status.playedSpot.scriptName);
+    const documentUri = await findScriptDocument(status.playedSpot.scriptPath);
     const document = await workspace.openTextDocument(documentUri);
     const options: TextDocumentShowOptions = {
         preserveFocus: true,
