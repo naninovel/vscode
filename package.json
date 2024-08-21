@@ -245,8 +245,8 @@
     "devDependencies": {
         "typescript": "^5.5.4",
         "@types/vscode": "^1.92.0",
-        "@vscode/vsce": "^2.31.1",
-        "esbuild": "^0.23.0",
-        "npm-check-updates": "^17.0.3"
+        "@vscode/vsce": "^3.0.0",
+        "esbuild": "^0.23.1",
+        "npm-check-updates": "^17.1.0"
     }
 }
