@@ -12,7 +12,7 @@
     <ItemGroup>
         <PackageReference Include="Bootsharp" Version="0.3.2"/>
         <PackageReference Include="Naninovel.Common.Bindings" Version="2024.8.19.1822"/>
-        <PackageReference Include="Naninovel.Language.Bindings" Version="2024.8.21.1938"/>
+        <PackageReference Include="Naninovel.Language.Bindings" Version="2024.8.25.3"/>
     </ItemGroup>
 
 </Project>
