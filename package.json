@@ -233,8 +233,8 @@
         "update": "ncu --interactive",
         "backend": "dotnet publish backend",
         "build": "esbuild src/extension.ts --bundle --outfile=dist/extension.js --format=cjs --external:vscode --external:process --external:module",
-        "package": "vsce package",
-        "release": "sh scripts/release.sh"
+        "package": "sh scripts/package.sh",
+        "publish": "sh scripts/publish.sh"
     },
     "dependencies": {
         "backend": "file:backend",
@@ -247,6 +247,6 @@
         "@types/vscode": "^1.92.0",
         "@vscode/vsce": "^3.0.0",
         "esbuild": "^0.23.1",
-        "npm-check-updates": "^17.1.0"
+        "npm-check-updates": "^17.1.1"
     }
 }
