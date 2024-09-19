@@ -7,7 +7,6 @@ import { getCachedMetadata } from "./storage";
 const serverReader = new Emitter<Message>();
 const serverWriter = new Emitter<Message>();
 const decoder = new TextDecoder("utf-8");
-const pattern = "**/*.nani";
 
 export async function bootLanguage(channel: OutputChannel) {
     Language.bootLanguageServer(serverReader, serverWriter);
@@ -24,17 +23,17 @@ function applyCachedMetadata() {
         Language.applyCustomMetadata(cachedMetadata);
 }
 
-function createClientOptions(channel: OutputChannel) {
+function createClientOptions(channel: OutputChannel): LanguageClientOptions {
     return {
         documentSelector: [{ language: Language.languageId }],
         progressOnInitialization: true,
         outputChannel: channel,
-        synchronize: { fileEvents: workspace.createFileSystemWatcher(pattern) }
-    } as LanguageClientOptions;
+        synchronize: { fileEvents: workspace.createFileSystemWatcher("**/*") }
+    };
 }
 
 async function findAndLoadAllScripts() {
-    const uris = await workspace.findFiles(pattern);
+    const uris = await workspace.findFiles("**/*.nani");
     const scripts: { uri: string, text: string }[] = await Promise.all(uris.map(readScript));
     Language.upsertDocuments(scripts);
 }
