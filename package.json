@@ -155,6 +155,12 @@
                     "type": "number",
                     "default": 500,
                     "markdownDescription": "Delay between processing document changes, in milliseconds. Decrease for faster response at the cost of performance."
+                },
+                "naninovel.refactorFileRenames": {
+                    "scope": "resource",
+                    "type": "boolean",
+                    "default": true,
+                    "markdownDescription": "Whether to update endpoints (such as paths of the @goto commands) when renaming script files and folders."
                 }
             }
         },
@@ -239,7 +245,7 @@
     "dependencies": {
         "backend": "file:backend",
         "@naninovel/common": "^1.2.37",
-        "@naninovel/language": "^1.4.10",
+        "@naninovel/language": "^1.5.0",
         "vscode-languageclient": "^9.0.1"
     },
     "devDependencies": {

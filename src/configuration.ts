@@ -14,3 +14,4 @@ export const diagnoseSyntax = root.get<boolean>("diagnoseSyntax") ?? true;
 export const diagnoseSemantics = root.get<boolean>("diagnoseSemantics") ?? true;
 export const diagnoseNavigation = root.get<boolean>("diagnoseNavigation") ?? true;
 export const debounceDelay = root.get<number>("debounceDelay") ?? 500;
+export const refactorFileRenames = root.get<boolean>("refactorFileRenames") ?? true;
