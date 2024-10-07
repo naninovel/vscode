@@ -91,8 +91,8 @@
                 "naninovel.scenarioRoot": {
                     "scope": "resource",
                     "type": "string",
-                    "default": "Scenario",
-                    "description": "Directory under which all the scenario scripts (.nani files) are stored; used to resolve local script paths."
+                    "default": "Assets/Scenario",
+                    "description": "Directory under which all the scenario scripts (.nani files) are stored; used to resolve local script paths. When the directory is not found, assumes current workspace is the scenario root."
                 },
                 "naninovel.bridgingEnabled": {
                     "scope": "resource",
