@@ -39,42 +39,84 @@
             "files.exclude": { "**/*.meta": true },
             "cSpell.enableFiletypes": ["naniscript"],
             "editor.semanticTokenColorCustomizations": {
-                "enabled": true,
-                "rules": {
-                    "CommentLine": "#5d6470",
-                    "CommentText": "#5d6470",
-                    "LabelLine": "#9bc37c",
-                    "LabelText": "#9bc37c",
-                    "CommandLine": "#6cb2ed",
-                    "InlinedCommand": "#6cb2ed",
-                    "Command": "#6cb2ed",
-                    "CommandIdentifier": "#6cb2ed",
-                    "Parameter": "#cd9769",
-                    "ParameterIdentifier": "#cd9769",
-                    "ParameterValue": "#e2be7f",
-                    "LocalizableValue": "#acb2be",
-                    "GenericTextLine": "#acb2be",
-                    "GenericTextPrefix": "#e2be7f",
-                    "GenericTextAuthor": "#e2be7f",
-                    "GenericTextAuthorAppearance": "#e2be7f",
-                    "Expression": "#62b8c1",
-                    "TextIdentifier": "#5d6470",
-                    "WaitFlag": "#6cb2ed",
-                    "Error": "#d14e4e"
+                "[*Dark*][*Night*][*Abyss*][*Monokai*]": {
+                    "enabled": true,
+                    "rules": {
+                        "CommentLine": "#5d6470",
+                        "CommentText": "#5d6470",
+                        "LabelLine": "#9bc37c",
+                        "LabelText": "#9bc37c",
+                        "CommandLine": "#6cb2ed",
+                        "InlinedCommand": "#6cb2ed",
+                        "Command": "#6cb2ed",
+                        "CommandIdentifier": "#6cb2ed",
+                        "Parameter": "#cd9769",
+                        "ParameterIdentifier": "#cd9769",
+                        "ParameterValue": "#e2be7f",
+                        "LocalizableValue": "#acb2be",
+                        "GenericTextLine": "#acb2be",
+                        "GenericTextPrefix": "#e2be7f",
+                        "GenericTextAuthor": "#e2be7f",
+                        "GenericTextAuthorAppearance": "#e2be7f",
+                        "Expression": "#62b8c1",
+                        "TextIdentifier": "#5d6470",
+                        "WaitFlag": "#6cb2ed",
+                        "Error": "#d14e4e"
+                    }
+                },
+                "[*Light*][*Day*][*Bright*]": {
+                    "enabled": true,
+                    "rules": {
+                        "CommentLine": "#acb5c6",
+                        "CommentText": "#acb5c6",
+                        "LabelLine": "#51a612",
+                        "LabelText": "#51a612",
+                        "CommandLine": "#257dc8",
+                        "InlinedCommand": "#257dc8",
+                        "Command": "#257dc8",
+                        "CommandIdentifier": "#257dc8",
+                        "Parameter": "#c642a5",
+                        "ParameterIdentifier": "#c642a5",
+                        "ParameterValue": "#9250bf",
+                        "LocalizableValue": "#4b5871",
+                        "GenericTextLine": "#4b5871",
+                        "GenericTextPrefix": "#9250bf",
+                        "GenericTextAuthor": "#9250bf",
+                        "GenericTextAuthorAppearance": "#9250bf",
+                        "Expression": "#3abfb3",
+                        "TextIdentifier": "#acb5c6",
+                        "WaitFlag": "#257dc8",
+                        "Error": "#be2222"
+                    }
                 }
             },
             "editor.tokenColorCustomizations": {
-                "textMateRules": [
-                    { "scope": ["naniscript.comment"], "settings": { "foreground": "#5d6470" } },
-                    { "scope": ["naniscript.label"], "settings": { "foreground": "#9bc37c" } },
-                    { "scope": ["naniscript.command"], "settings": { "foreground": "#6cb2ed" } },
-                    { "scope": ["naniscript.command.parameter.id"], "settings": { "foreground": "#cd9769" } },
-                    { "scope": ["naniscript.command.parameter.value"], "settings": { "foreground": "#e2be7f" } },
-                    { "scope": ["naniscript.generic-text"], "settings": { "foreground": "#acb2be" } },
-                    { "scope": ["naniscript.author"], "settings": { "foreground": "#e2be7f" } },
-                    { "scope": ["naniscript.expression"], "settings": { "foreground": "#62b8c1" } },
-                    { "scope": ["naniscript.text-identifier"], "settings": { "foreground": "#5d6470" } }
-                ]
+                "[*Dark*][*Night*][*Abyss*][*Monokai*]": {
+                    "textMateRules": [
+                        { "scope": ["naniscript.comment"], "settings": { "foreground": "#5d6470" } },
+                        { "scope": ["naniscript.label"], "settings": { "foreground": "#9bc37c" } },
+                        { "scope": ["naniscript.command"], "settings": { "foreground": "#6cb2ed" } },
+                        { "scope": ["naniscript.command.parameter.id"], "settings": { "foreground": "#cd9769" } },
+                        { "scope": ["naniscript.command.parameter.value"], "settings": { "foreground": "#e2be7f" } },
+                        { "scope": ["naniscript.generic-text"], "settings": { "foreground": "#acb2be" } },
+                        { "scope": ["naniscript.author"], "settings": { "foreground": "#e2be7f" } },
+                        { "scope": ["naniscript.expression"], "settings": { "foreground": "#62b8c1" } },
+                        { "scope": ["naniscript.text-identifier"], "settings": { "foreground": "#5d6470" } }
+                    ]
+                },
+                "[*Light*][*Day*][*Bright*]": {
+                    "textMateRules": [
+                        { "scope": ["naniscript.comment"], "settings": { "foreground": "#acb5c6" } },
+                        { "scope": ["naniscript.label"], "settings": { "foreground": "#51a612" } },
+                        { "scope": ["naniscript.command"], "settings": { "foreground": "#257dc8" } },
+                        { "scope": ["naniscript.command.parameter.id"], "settings": { "foreground": "#c642a5" } },
+                        { "scope": ["naniscript.command.parameter.value"], "settings": { "foreground": "#9250bf" } },
+                        { "scope": ["naniscript.generic-text"], "settings": { "foreground": "#4b5871" } },
+                        { "scope": ["naniscript.author"], "settings": { "foreground": "#9250bf" } },
+                        { "scope": ["naniscript.expression"], "settings": { "foreground": "#3abfb3" } },
+                        { "scope": ["naniscript.text-identifier"], "settings": { "foreground": "#acb5c6" } }
+                    ]
+                }
             },
             "[naniscript]": {
                 "files.eol": "\n",
@@ -82,7 +124,8 @@
                 "editor.occurrencesHighlight": "off",
                 "editor.wordBasedSuggestions": "off",
                 "editor.suggest.showWords": false,
-                "editor.bracketPairColorization.enabled": false
+                "editor.bracketPairColorization.enabled": false,
+                "editor.semanticHighlighting.enabled": true
             }
         },
         "configuration": {
