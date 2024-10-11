@@ -287,12 +287,12 @@
     },
     "dependencies": {
         "backend": "file:backend",
-        "@naninovel/common": "^1.2.38",
+        "@naninovel/common": "^1.2.40",
         "@naninovel/language": "^1.5.0",
         "vscode-languageclient": "^9.0.1"
     },
     "devDependencies": {
-        "typescript": "^5.6.2",
+        "typescript": "^5.6.3",
         "@types/vscode": "^1.94.0",
         "@vscode/vsce": "^3.1.1",
         "esbuild": "^0.24.0",
