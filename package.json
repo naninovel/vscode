@@ -24,7 +24,7 @@
                 "aliases": ["NaniScript", "naniscript"],
                 "extensions": [".nani"],
                 "configuration": "./syntax/language-configuration.json",
-                "icon": { "light": "./assets/script-icon.png", "dark": "./assets/script-icon.png" }
+                "icon": { "light": "./assets/script-icon.svg", "dark": "./assets/script-icon.svg" }
             }
         ],
         "grammars": [
